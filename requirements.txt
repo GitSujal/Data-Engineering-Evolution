@@ -1,0 +1,8 @@
+pandas
+jupyter
+matplotlib
+ipywidgets
+requests
+beautifulsoup4
+requests-ip-rotator
+plotly
