@@ -3,69 +3,39 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import re
-import json
+from datetime import datetime
+import os
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
 # Class to scrape data from seek.com.au
 class SeekScraper:
+    
     seek_base_url = 'https://www.seek.com.au'
     
-    default_qualifications = {
-    "degree": "Degree",
-    "bachelor": "Bachelor",
-    "master": "Master",
-    "doctor": "Doctor",
-    "undergrad": "Undergrad",
-    "phd": "PhD",
-    "postgrad": "Postgrad",
-    "postgraduate": "Postgraduate",
-    "diploma": "Diploma",
-    "cert": "Cert",
-    "certificate": "Certificate",
-    "certification": "Certification",
-    "graduate": "Graduate",
-    "undergraduate": "Undergraduate"
+    column_to_seek_attribute_mapping = {
+        'search results': 'searchResults',
+        'jobs lists': 'normalJob',
+        'job title': 'jobTitle',
+        'company': 'jobCompany',
+        'location': 'jobLocation',
+        'job classification': 'jobClassification',
+        'work type': 'job-detail-work-type',
+        'job description': 'jobAdDetails'
     }
-
-    default_programming_languages = {"sql" : "SQL", "python" : "Python", "r" : "R", "c":"C",
-                            "c#":"C#","javascript" : "JavaScript","js":"JS","java":"Java",
-                            "scala":"Scala","sas" : "SAS", "matlab": "MATLAB","c++" : "C++", 
-                            "c/c++" : "C / C++","perl" : "Perl","go" : "Go","typescript" : "TypeScript", 
-                            "bash":"Bash", "html" : "HTML","css" : "CSS", "php" : "PHP", "powershell" : "Powershell",
-                            "rust" : "Rust", "kotlin" : "Kotlin", "ruby" : "Ruby", "dart" : "Dart","assembly" :"Assembly",
-                              "swift" : "Swift", "vba" : "VBA", "lua" : "Lua", "groovy" : "Groovy", "delphi" : "Delphi", 
-                            "objective-c" : "Objective-C", "haskell" : "Haskell", "elixir" : "Elixir", "julia" : "Julia", 
-                            "clojure": "Clojure", "solidity" : "Solidity", "lisp" : "Lisp", "f#":"F#", "fortran" : "Fortran",
-                            "erlang" : "Erlang", "apl" : "APL", "cobol" : "COBOL", "ocaml": "OCaml", "crystal":"Crystal",
-                            "javascript/typescript" : "JavaScript / TypeScript", "golang":"Golang","nosql": "NoSQL","mongodb" : "MongoDB",
-                            "t-sql" :"Transact-SQL","no-sql" : "No-SQL", "visual_basic" : "Visual Basic",
-                            "pascal":"Pascal","mongo" : "Mongo", "pl/sql" : "PL/SQL", "sass" :"Sass", "vb.net" : "VB.NET", "mssql" : "MSSQL"
-                            }
-
-    default_skill_keywords = {"airflow": "Airflow", "alteryx": "Alteryx", "asp.net": "ASP.NET", 
-                      "atlassian": "Atlassian", "excel": "Excel", "power_bi": "Power BI", 
-                      "tableau": "Tableau", "srss": "SRSS", "word": "Word", "unix": "Unix", 
-                      "vue": "Vue", "jquery": "jQuery", "linux/unix": "Linux / Unix", "seaborn": "Seaborn", 
-                      "microstrategy": "MicroStrategy", "spss": "SPSS", "visio": "Visio", "gdpr": "GDPR", 
-                      "ssrs": "SSRS", "spreadsheet": "Spreadsheet", "aws": "AWS", "hadoop": "Hadoop", "ssis": "SSIS", 
-                      "linux": "Linux", "sap": "SAP", "powerpoint": "PowerPoint", "sharepoint": "SharePoint", "redshift": "Redshift", 
-                      "snowflake": "Snowflake", "qlik": "Qlik", "cognos": "Cognos", "pandas": "Pandas", "spark": "Spark", 
-                      "outlook": "Outlook", "oracle": "Oracle", "architect": "Architect", "architecture": "Architecture", 
-                      "catalogue": "Catalogue", "catalog": "Catalog", "lineage": "Lineage"
-                    }
-
-
     # Constructor
     def __init__(self, url:str=None, 
                     job:str = None, 
                     location:str = None, 
                     pages_to_scrape:int = 1,
+                    skip_pages:int = 1,
                     debug:bool = False,
                     sleep_time:float = 0.2,
-                    skill_keywords:list = None,
-                    programming_languages:list = None,
-                    qualifications:list = None,
-                    incldue_raw_description:bool = False):
+                    columns:list = ['Search Term', 'Job ID', 'Job Title', 'Company', 'Location', 
+                                    'Job Classification', 'Job Description', 'Work Type', 'Scrape Date'],
+                    data_folder: str = 'data'
+                    ):
         if url is None and (job is None or location is None):
             raise ValueError('Either url or job and location must be provided')
         if url is not None:
@@ -74,32 +44,21 @@ class SeekScraper:
             else:
                 self.url = url
         else:
+            self.job = job
+            self.location = location
             self.url = f'{self.seek_base_url}/{job}-jobs/in-{location}'
         self.pages_to_scrape = pages_to_scrape
+        self.skip_pages = skip_pages
         self.debug = debug
-        self.include_raw_description = incldue_raw_description
         self.sleep_time = sleep_time
-        if self.include_raw_description:
-            self.data = pd.DataFrame(columns=['Job Title', 'Company', 'Location', 
-                                              'Job Classification', 'Job Link', 'Skills', 
-                                              'Qualifications', 'Programming Languages', 'Job Description'])
-        else:
-            self.data = pd.DataFrame(columns=['Job Title', 'Company', 'Location', 
-                                              'Job Classification', 'Job Link', 'Skills', 
-                                              'Qualifications', 'Programming Languages'])
-        if skill_keywords:
-            self.skill_keywords = skill_keywords
-        else:
-            self.skill_keywords = list(self.default_skill_keywords.keys())
-        if programming_languages:
-            self.programming_languages = programming_languages
-        else:
-            self.programming_languages = list(self.default_programming_languages.keys())
-        if qualifications:
-            self.qualifications = qualifications
-        else:
-            self.qualifications = list(self.default_qualifications.keys())
-    
+        self.columns = columns
+        self.data = pd.DataFrame(columns= self.columns)
+        self.data_folder = data_folder
+        if not os.path.exists(self.data_folder):
+            os.makedirs(self.data_folder)
+        self.local_file = f'{self.data_folder}/seek_scraper_raw_data.csv'
+        self.index_file = f'{self.data_folder}/seek_scraper_all_index.csv'
+        
     def make_request(self, url:str):
         if self.debug:
             print(f'Making request to {url}')
@@ -117,121 +76,164 @@ class SeekScraper:
             return 'Unknown'
         return value.text
 
-    def parse_job_data(self, response):
+
+    def parse_job_data(self, response, available_indices: list = []):
         result = BeautifulSoup(response.text, 'html.parser')
         # find attribute search result  
-        search_results = result.find(attrs={'data-automation':'searchResults'})
+
+        search_results = result.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["search results"]})
         # find attributes with job title within search result
-        jobs = search_results.find_all(attrs={'data-automation':'normalJob'})
+        jobs = search_results.find_all(attrs={'data-automation':self.column_to_seek_attribute_mapping["jobs lists"]})
+        
         if self.debug:
             print(f'Found {len(jobs)} jobs')
         if len(jobs) > 0:
             for job in jobs:
+                temp_data = {}  
+                if self.debug:
+                    print('Parsing job data')
+                temp_data = pd.DataFrame(columns= self.columns)
+                temp_data["Search Term"] = [self.job.replace('-',' ').capitalize()]   
+                
                 # find the job title
-                job_title = job.find(attrs={'data-automation':'jobTitle'})
+                job_title = job.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["job title"]})
+                temp_data["Job Title"] = [self.default_if_none(job_title)]
+                if self.debug:
+                    print(f'Job Title: {self.default_if_none(job_title)}')
+                
                 # find the job link
                 job_link = job_title['href']
-                job_title = self.default_if_none(job_title)
-                # find the company name
-                company = job.find(attrs={'data-automation':'jobCompany'})
-                company = self.default_if_none(company)
-                # find the location
-                location = job.find(attrs={'data-automation':'jobLocation'})
-                location = self.default_if_none(location)
-                # job classification
-                job_classification = job.find(attrs={'data-automation':'jobClassification'})
-                job_classification = self.default_if_none(job_classification)
-                if job_link is not None:
-                    job_description_url = f'{self.seek_base_url}{job_link}'
-                    job_description_response = self.make_request(job_description_url)
-                    if job_description_response is not None:
-                        job_description = self.parse_job_description(job_description_response)
-                        parsed_jd = self.process_description(job_description)
-                    else:
-                        job_description = 'Unknown'
-                        parsed_jd = {"skills":'Unknown', "qualifications":'Unknown', "programming_languages":'Unknown'}
-                else:
-                    job_description = 'Unknown'
-                    parsed_jd = {"skills":'Unknown', "qualifications":'Unknown', "programming_languages":'Unknown'}
                 if self.debug:
-                    print(f'Job title: {job_title}')
-                    print(f'Company: {company}')
-                    print(f'Location: {location}')
-                    print(f'Job classification: {job_classification}')
-                    print(f'Job link: {job_link}')
-                    print(f'Job description: {job_description}')
-                    print(f'Parsed job description: {parsed_jd}')
+                    print(f'Job Link: {self.seek_base_url}{job_link}')
                 
-                if self.data.shape[0] == 0:
+                # job id is the part between /job/ and ? in the job link
+                job_id = job_link.split('/job/')[1].split('?')[0]
+                if job_id not in available_indices:
                     if self.debug:
-                        print('Adding first row')
-                    if self.include_raw_description:
-                        self.data.loc[0] = [job_title, company, location, 
-                                        job_classification, job_link,
-                                        parsed_jd['skills'], parsed_jd['qualifications'],
-                                        parsed_jd['programming_languages'], job_description]
+                        print(f'Found new job with id {job_id}')
+                    temp_data["Job ID"] = [job_id]
+                    if self.debug:
+                        print(f'Job ID: {job_id}')
+
+                    # find the company name
+                    company = job.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["company"]})
+                    temp_data["Company"] = [self.default_if_none(company)]
+                    if self.debug:
+                        print(f'Company: {self.default_if_none(company)}')
+
+                    # find the location
+                    location = job.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["location"]})
+                    temp_data["Location"] = [self.default_if_none(location)]
+                    if self.debug:
+                        print(f'Location: {self.default_if_none(location)}')
+
+                    # job classification
+                    job_classification = job.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["job classification"]})
+                    temp_data["Job Classification"] = [self.default_if_none(job_classification)]
+                    if self.debug:
+                        print(f'Job Classification: {self.default_if_none(job_classification)}')
+
+                    if job_link is not None:
+                        job_description_url = f'{self.seek_base_url}{job_link}'
+                        job_description_response = self.make_request(job_description_url)
+                        if job_description_response is not None:
+                            job_description, work_type = self.parse_job_description(job_description_response)
+                            temp_data['Job Description'] = [job_description]
+                            temp_data['Work Type'] = [self.default_if_none(work_type)]
+                        else:
+                            temp_data['Job Description'] = ['Unknown']
+                            temp_data["Work Type"] = ['Unknown']
                     else:
-                        self.data.loc[0] = [job_title, company, location, 
-                                        job_classification, job_link,
-                                        parsed_jd['skills'], parsed_jd['qualifications'],
-                                        parsed_jd['programming_languages']]
+                        temp_data['Job Description'] = ['Unknown']
+                        temp_data["Work Type"] = ['Unknown']
+
+                    temp_data["Scrape Date"] = [datetime.now().strftime("%d/%m/%Y %H:%M:%S")]
+
+                    if self.debug:
+                        print(temp_data)
+                    
+                    if self.data.shape[0] == 0:
+                        if self.debug:
+                            print('Adding first row')
+                        self.data = pd.DataFrame(temp_data)
+                    else:
+                        if self.debug:
+                            print('Adding row')
+                        # append the dfs using concat
+                        temp_data_df = pd.DataFrame(temp_data)
+                        self.data = pd.concat([self.data, temp_data_df], ignore_index=True)
+
                 else:
                     if self.debug:
-                        print('Adding row')
-                    if self.include_raw_description:
-                        self.data.loc[self.data.shape[0]] = [job_title, company, location, 
-                                        job_classification, job_link,
-                                        parsed_jd['skills'], parsed_jd['qualifications'],
-                                        parsed_jd['programming_languages'], job_description]
-                    else:
-                        self.data.loc[self.data.shape[0]] = [job_title, company, location, 
-                                        job_classification, job_link,
-                                        parsed_jd['skills'], parsed_jd['qualifications'],
-                                        parsed_jd['programming_languages']]
-        
+                        print(f'Job ID {job_id} already exists in data')
+                if self.debug:
+                    print('------------------------')
+                    break
+                        
     def parse_job_description(self, response):
         result = BeautifulSoup(response.text, 'html.parser')
         # find attribute search result  
-        job_description = result.find(attrs={'data-automation':'jobAdDetails'})
+        job_description = result.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["job description"]})
+        work_type = result.find(attrs={'data-automation':self.column_to_seek_attribute_mapping["work type"]})
         job_description = self.default_if_none(job_description)
         # remove all non-alphanumeric characters
         if job_description is not None:
             job_description = re.sub('\W+',' ', job_description).lower()
-        return job_description
-
-    def process_description(self, description):
-        if self.debug:
-            print(f'Processing description: {description}')
-        jd_skills = []
-        jd_qualifications = []
-        jd_programming_languages = []
-        for word in description.split():
-            if word in self.programming_languages:
-                    jd_programming_languages.append(word)
-            if word in self.qualifications:
-                    jd_qualifications.append(word)
-            if word in self.skill_keywords:
-                    jd_skills.append(word)
-        if len(jd_skills) > 0:
-            jd_skills = ' '.join(set(jd_skills))
-        else:
-            jd_skills = ''
-        if len(jd_qualifications) > 0:
-            jd_qualifications = ' '.join(set(jd_qualifications))
-        else:
-            jd_qualifications = ''
-        if len(jd_programming_languages) > 0:
-            jd_programming_languages = ' '.join(set(jd_programming_languages))
-        else:
-            jd_programming_languages = ''
-        
-        return_dict = {"skills":jd_skills, "qualifications":jd_qualifications, "programming_languages":jd_programming_languages}
-        return return_dict
+        return job_description, work_type
     
-    def __call__(self):
+    def save_to_csv(self):
+        if self.debug:
+            print(f'Saving data to {self.local_file}')
+
+        # if the csv exists append it based on job id
+        if os.path.exists(self.local_file):
+            # read the csv into a dataframe
+            df = pd.read_csv(self.local_file)
+            # find the new rows
+            new_rows = self.data[~self.data['Job ID'].isin(df['Job ID'])]
+            # append the new rows to the dataframe using concat
+            df = pd.concat([df, new_rows], ignore_index=True)
+            # save the dataframe to csv
+            df.to_csv(self.local_file, index=False)
+        else:
+            # save the dataframe to csv
+            self.data.to_csv(self.local_file, index=False)
+        if self.debug:
+            print('Data saved')
+    
+    def save_all_indexes(self):
+        if self.debug:
+            print(f'Saving all indexes to {self.index_file}')
+        # open the index file as dataframe and append the new indexes
+        if os.path.exists(self.index_file):
+            index_df = pd.read_csv(self.index_file)
+            # concat the new indexes
+            indexes = pd.concat([index_df, self.data[['Job ID', 'Scrape Date']]], ignore_index=True)
+            # remove duplicates
+            indexes = indexes.drop_duplicates(subset=['Job ID'], keep='first')
+            # save the indexes to csv
+            indexes.to_csv(self.index_file, index=False)
+        else:
+            indexes = self.data[['Job ID', 'Scrape Date']]
+            indexes.to_csv(self.index_file, index=False)
+        if self.debug:
+            print('All indexes saved')
+
+    def get_available_indexes(self):
+        if self.debug:
+            print(f'Getting available indexes from {self.index_file}')
+        if os.path.exists(self.index_file):
+            index_df = pd.read_csv(self.index_file)
+            return index_df['Job ID'].astype(str).tolist()
+        else:
+            return []
+
+    def __call__(self, save_local = True):
         if self.debug:
             print(f'Calling SeekScraper with url: {self.url}')
-        for page in range(1, self.pages_to_scrape+1):
+        available_indexes = self.get_available_indexes()
+
+        for page in range(self.skip_pages, self.pages_to_scrape+self.skip_pages):
             if self.debug:
                 print(f'Scraping page {page}')
             if page == 1:
@@ -239,6 +241,9 @@ class SeekScraper:
             else:
                 response = self.make_request(f'{self.url}?page={page}')
             if response is not None:
-                self.parse_job_data(response)
+                self.parse_job_data(response, available_indexes)
             sleep(self.sleep_time)
+        if save_local:
+            self.save_to_csv()
+            self.save_all_indexes()
         return self.data

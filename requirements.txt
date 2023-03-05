@@ -6,3 +6,6 @@ requests
 beautifulsoup4
 requests-ip-rotator
 plotly
+argparse
+streamlit
+watchdog
