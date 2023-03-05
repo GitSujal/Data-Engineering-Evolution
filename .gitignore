@@ -5,3 +5,4 @@ data/
 *.pyo
 .DS_Store
 .streamlit/
+*.csv
