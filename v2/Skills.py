@@ -82,9 +82,13 @@ qualification_df = pd.DataFrame.from_dict(qualification_count, orient='index', c
 
 # drop the row where the skill is empty
 skills_df = skills_df.drop('')
+# sum of Count column of skills df
+total_skills = skills_df['Count'].sum()
 
 # drop the row where the language is empty
 languages_df = languages_df.drop('')
+# sum of Count column of languages df
+total_languages = languages_df['Count'].sum()
 
 # sort the dataframes
 skills_df = skills_df.sort_values(by='Count', ascending=False)
@@ -142,5 +146,5 @@ st.info("Above chart is based on {} jobs scraped from Seek".format(len(sel_df)),
 
 
 # add footer
-st.markdown("&copy; All rights reserved. 2023", unsafe_allow_html=True)
+st.markdown("&copy; 2023 All rights reserved. Sujal Dhungana", unsafe_allow_html=True)
 
