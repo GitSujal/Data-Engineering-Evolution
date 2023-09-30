@@ -6,3 +6,4 @@ data/
 .DS_Store
 .streamlit/
 *.csv
+*.log

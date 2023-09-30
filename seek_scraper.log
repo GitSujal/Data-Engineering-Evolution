@@ -1,0 +1,30 @@
+root - INFO - Starting to Scrape 10 Job: Data Analyst, Location: Australia
+v4.util.seek_scraper - INFO - Calling SeekScraper with url: https://www.seek.com.au/Data Analyst-jobs/in-Australia
+v4.util.seek_scraper - INFO - Getting available indexes from data/seek_scraper_all_index.csv
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/Data Analyst-jobs/in-Australia?page=1
+v4.util.seek_scraper - INFO - 10 jobs to scrape
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66047726
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66083145
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66087422
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/65988125
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66065686
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66085279
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66061648
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66048462
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66019965
+v4.util.seek_scraper - INFO - Making request to https://www.seek.com.au/job/66062717
+v4.util.seek_scraper - INFO - Saving data to data/seek_scraper_raw_data.csv
+v4.util.seek_scraper - INFO - Saved data to data/seek_scraper_raw_data.csv
+v4.util.seek_scraper - INFO - Saving all indexes to data/seek_scraper_all_index.csv
+v4.util.seek_scraper - INFO - Saved all indexes to data/seek_scraper_all_index.csv
+v4.util.seek_scraper - INFO - Scraped 10 jobs batch number 1
+v4.util.seek_scraper - INFO - Scraped 22 jobs
+v4.util.seek_scraper - INFO - Head of data:                     advertiserName country  ... searchKeywords searchLocation
+0               Armstrong Flooring      au  ...   Data Analyst      Australia
+1                       LocationIQ      au  ...   Data Analyst      Australia
+2      UniSuper Management Pty Ltd      au  ...   Data Analyst      Australia
+3               Solar Service Guys      au  ...   Data Analyst      Australia
+4  Indigo Australasia Incorporated      au  ...   Data Analyst      Australia
+
+[5 rows x 17 columns]
+root - INFO - Finished Scraping 10 Job: Data Analyst, Location: Australia

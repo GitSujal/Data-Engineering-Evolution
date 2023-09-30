@@ -1,6 +1,5 @@
-## v2 - Local Analysis with separation of ETL and Analysis
-The second version of the data engineering evolution is a simple data pipeline that scrapes data from a website and stores it in a local CSV file. It scrapes the data from seek and stores it in a CSV file. The data is then loaded into a pandas dataframe and analysed using a separate processing script. The analysis is then visualised using a web application that is hosted locally. The web application is built using streamlit and visualisation is done using plotly. Everything is done locally on your machine.
-
+## v3 - Better Scraping and Extra columns, expanded transformations
+The third version of the data engineering evolution is a getting more data. The data grows and so does the complexity of transformations. The data is barely suitable to be stored offline and transformation is taking longer as well. The data is still local and the visualisations are hosted on local machin.
 ---
 
 ## (E) Extract
