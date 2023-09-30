@@ -1,0 +1,26 @@
+Please tailor my resume below to match the role in this page. Format using markdown.
+SKILLS
+Python, Data Visualisation, Data Analytics, Data Engineering, Data Modelling, Data Mining, Data Pipelines, Data Warehousing, Predictive Analytics
+Industry Knowledge: Project Management, Product Development, Agile Practices, DevOps Practices
+Tools & Technologies: Python, R, Spotfire, Power BI, C++, C, HTML, SQL, Git, AWS, Azure, Snowflake, CI/CD, Terraform, Azure Datafactory, Azure Synapse Analytics, Azure Databricks, AWS Glue, PySpark, Redshift
+Senior Analyst- Data Engineering
+Water Corporation 
+Developed multiple data ingestion pipelines from various sources including PI, GIS, SQL servers etc. for a data product that helps business manage AUD 2.3Billion worth of assets.
+Created test scripts and automation to report on the pipeline freshness, quality of data and validate the business logic for the product cutting the test times from days to hours.
+Started a collaborative culture within cross-project teams by establishing a collaborative repository where all developers can share their work. Finalised the structure for shared platform along with guide on how to share ideas and code together.
+Visagio - Technology Consultant
+Developed time and attendance tool for a tier-one mining company (workforce 20K+) which provides better visibility of actual workforce consumed along with future forecast. Empowered with these insights supervisors optimise daily plans saving business over $40M.
+Created a terabyte-scale data pipeline with automatic deployment using GitLab CI/CD, terraform, Amazon S3, EC2, lambda, Athena and Sagemaker. Created multiple data pipelines using Azure DevOps, Airflow, Stream sets, Amazon S3 and Snowflake.
+Created multiple mission-critical dashboards using reporting tools Power BI, Spotfire for governmental reporting and regulatory purposes. Restructured multiple dashboards using best practices in data modelling and transformation increasing responsiveness and sustainability.
+
+
+
+Can you also write a cover letter now based on my resume and the job description.
+
+
+
+Now help me prepare for the interview. Ask all potential interview questions for this position. After each question give me a feedback on the response and also give suggestion on how I can improve the response. Use skills and experience from my resume to use in the response.
+
+
+
+

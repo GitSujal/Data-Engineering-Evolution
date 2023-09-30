@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Courses</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- Page title and introduction -->
+    <div id="intro">
+        <h1>Contact Us</h1>
+        <p>
+        We would love to hear from you! Whether you have a question, feedback, or just want to say hello, 
+        feel free to reach out to us using the form below. We will get back to you as soon as possible.
+        </p>
+    </div>
+    
+    <!-- Contact form -->
+    <div id="form">
+        <form action="/send-message" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" required></textarea><br>
+        <input type="submit" value="Send Message">
+        </form> 
+    </div>
+    
+    <!-- Contact information -->
+    <div id="info">
+        <h2>Contact Information</h2>
+        <p>
+        Phone: (123) 456-7890<br>
+        Email: info@example.com<br>
+        Address: 123 Main Street, Anytown, USA 12345
+        </p>
+    </div>
+</body>    

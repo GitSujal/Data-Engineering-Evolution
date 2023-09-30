@@ -68,6 +68,7 @@ def salary_processor(salary_text: str, debug: bool = False):
         'per_annum': 0,
         'per_hour': 0,
         'per_day': 0,
+        'jobSal_formatted': salary_text
     }
     
     if salary_text == '' or salary_text == 'Unknown':
@@ -75,36 +76,53 @@ def salary_processor(salary_text: str, debug: bool = False):
     else:
         # replace 'to' with '-' to make it easier to split
         salary_text = salary_text.replace('to', '-').lower()
-        # replace k with 000 to make it easier to split
-        salary_text = salary_text.replace('k', '000').replace('K', '000')
+        
         # get rid of comma in salary
         salary_text = salary_text.replace(',', '').replace(', ', '')
-        
+        # replace all spaces between digits with nothing
+        salary_text = re.sub(r'(\d)\s+(\d)', r'\1\2', salary_text)
+
         # replace 'per hour' with 'per hr' to make it easier to split using regex
-        salary_text = salary_text.replace('per hour', 'per hr').replace('per hour', 'per hr')\
-            .replace('p. h.', 'per hr').replace('p.h.', 'per hr').replace('p/h', 'per hr')
+        salary_text = salary_text.replace('per hour', 'per hr')\
+            .replace('p. h.', 'per hr').replace('p.h.', 'per hr').replace('p/h', 'per hr').replace('ph', 'per hr')\
+            .replace('p/h', 'per hr').replace('/hour', 'per hr').replace('/ hour', 'per hr').replace('/hr', 'per hr').replace('/h', 'per hr')\
+            .replace('perhour', 'per hr').replace('an hour', 'per hr')
         
         # replace 'per day' with 'per dy' to make it easier to split using regex
         salary_text = salary_text.replace('per day', 'per dy').replace('perday', 'per dy')\
-            .replace('p. d.', 'per dy').replace('p.d.', 'per dy').replace('p/d', 'per dy').replace('per day', 'per dy')
+            .replace('p. d.', 'per dy').replace('p.d.', 'per dy').replace('p/d', 'per dy').replace('per day', 'per dy')\
+            .replace('a day', 'per dy').replace('daily', 'per dy').replace('/day', 'per dy')\
+            .replace('pd', 'per dy').replace('dr', 'per dy').replace('day rate', 'per dy').replace('dayrate', 'per dy')
         
         # replace 'per fortnight' with 'per fn' to make it easier to split using regex
         salary_text = salary_text.replace('per fortnight', 'per fn').replace('perfortnight', 'per fn')\
             .replace('p. fn.', 'per fn').replace('p.fn.', 'per fn').replace('p/fn', 'per fn')\
-            .replace('2 weeks', 'per fn').replace('2weeks', 'per fn').replace('2-weeks', 'per fn')
+            .replace('2 weeks', 'per fn').replace('2weeks', 'per fn').replace('2-weeks', 'per fn')\
+            .replace('a fortnight', 'per fn').replace('a f.n.', 'per fn').replace('a fn', 'per fn')\
+            .replace('2-weeks', 'per fn')
         
-        # replace 'per week' with 'per wk' to make it easier to split using regex
-        salary_text = salary_text.replace('per week', 'per wk').replace('perweek', 'per wk')\
-            .replace('p. wk.', 'per wk').replace('p.wk.', 'per wk').replace('p/wk', 'per wk')
-            
+        # replace 'per week' with 'per w' to make it easier to split using regex
+        salary_text = salary_text.replace('per week', 'per w').replace('perweek', 'per w')\
+            .replace('p. wk.', 'per w').replace('p.wk.', 'per w').replace('p/wk', 'per w')\
+            .replace('a week', 'per w').replace('a w.', 'per w').replace('a wk', 'per w')
+        
+        # repalce 'per annum' with 'per yr' to make it easier to split using regex
+        salary_text = salary_text.replace('per annum', 'per yr').replace('perannum', 'per yr')\
+            .replace('p. yr.', 'per yr').replace('p.yr.', 'per yr').replace('p/yr', 'per yr')\
+            .replace('per year', 'per yr').replace('peryear', 'per yr').replace('per year', 'per yr')\
+            .replace('p.a.', 'per yr').replace('pa', 'per yr').replace('p.a', 'per yr')
+
+        # # replace k with 000 to make it easier to split
+        salary_text = salary_text.replace('k', '000')
         min_salary = 0
         max_salary = 0
+
 
         if '-' in salary_text:
             sals = salary_text.split('-')
             if len(sals) > 2:
                 # when there are too many numbers use ratio to find the two closest numbers and use them as min and max
-                all_sals = re.findall(r'\$?\s?(\d+)', salary_text)
+                all_sals = re.findall(r'\$\s?(\d+)', salary_text)
                 all_sal_num = [int(sal) for sal in all_sals if int(sal) > 20]
                 # find the two closest numbers form the list using ratio
                 for i,val in enumerate(all_sal_num):
@@ -137,7 +155,7 @@ def salary_processor(salary_text: str, debug: bool = False):
                     if max_salary < 20:
                         max_salary = 0
         else:
-            min_salary_txt = re.findall(r'\$?\s?(\d+)', salary_text)
+            min_salary_txt = re.findall(r'\$\s?(\d+)', salary_text)
             if len(min_salary_txt) > 0:
                 min_salary = int(min_salary_txt[0])
                 max_salary = min_salary
@@ -145,8 +163,11 @@ def salary_processor(salary_text: str, debug: bool = False):
             print(f'salary_text: {salary_text}')
             print(f'min_salary: {min_salary}, max_salary: {max_salary}')
 
+        scale  = {"day": 260, "week": 52,  "year": 1, "fortnight": 26, "hour": 1976, "thousand": 0.001,'k': 1000}
+        scalecap = {"day": 4000, "week": 20000, "year": 1000000, "fortnight": 30000, "hour": 400}
+
         if min_salary != 0 and max_salary != 0:
-            avg_salary = (min_salary + max_salary) // 2
+          avg_salary = (min_salary + max_salary) // 2
         elif min_salary != 0 and max_salary == 0:
             avg_salary = min_salary
         elif min_salary == 0 and max_salary != 0:
@@ -154,29 +175,49 @@ def salary_processor(salary_text: str, debug: bool = False):
         else:
             return salary_dict
         
-        scale  = {"day": 260, "week": 52,  "year": 1, "fortnight": 26, "hour": 1976, "thousand": 0.001}
-        scalecap = {"day": 4000, "week": 20000, "year": 1000000, "fortnight": 40000, "hour": 999}
-        required_scale = None
+        required_scale = 'year'
         # find the scale of the salary
-        if 'per hr' in salary_text and avg_salary < scalecap['hour']:
-            required_scale = 'hour'
-        elif 'per dy' in salary_text and avg_salary < scalecap['day']:
-            required_scale = 'day'
-        elif 'per wk' in salary_text and avg_salary < scalecap['week']:
-            required_scale = 'week'
-        elif 'per fn' in salary_text and avg_salary < scalecap['fortnight']:
-            required_scale = 'fortnight'
+        if 'per yr' not in salary_text and avg_salary < scalecap['year']:
+            if 'per hr' in salary_text and avg_salary < scalecap['hour']:
+                required_scale = 'hour'
+            elif 'per dy' in salary_text and avg_salary < scalecap['day']:
+                required_scale = 'day'
+            elif 'per wk' in salary_text and avg_salary < scalecap['week']:
+                required_scale = 'week'
+            elif 'per fn' in salary_text and avg_salary < scalecap['fortnight']:
+                required_scale = 'fortnight'
+            else:
+                if avg_salary < scalecap['hour']:
+                    required_scale = 'hour'      
+                elif avg_salary < scalecap['day'] and avg_salary > scalecap['hour']:
+                    required_scale = 'day'
         else:
+            if avg_salary < (scalecap['year']/1000):
+                required_scale = 'k'
             required_scale = 'year'
-
+        
+        # number sanity check
         if avg_salary > 1000000 or min_salary > 1000000 or max_salary > 1000000:
             required_scale = 'thousand'
+
+        # if the min and max salary are in different scale, convert them to the same scale
+        if min_salary < max_salary/1000 and max_salary < scalecap['year']:
+                min_salary = min_salary * 1000
+        elif min_salary < max_salary/1000 and max_salary > scalecap['year']:
+            max_salary = max_salary / 1000
+        if max_salary < min_salary and min_salary < scalecap['year']:
+            max_salary = max_salary * 1000
+        elif max_salary < min_salary and min_salary > scalecap['year']:
+                min_salary = min_salary / 1000
+
+        avg_salary = (min_salary + max_salary)//2    
 
         salary_dict['min'] = min_salary * scale[required_scale]
         salary_dict['max'] = max_salary * scale[required_scale]
         salary_dict['per_annum'] = avg_salary * scale[required_scale]
         salary_dict['per_hour'] = (avg_salary * scale[required_scale])// scale['hour']
         salary_dict['per_day'] = (avg_salary* scale[required_scale])// scale['day']
+        salary_dict['jobSal_formatted'] = salary_text
 
     return pd.Series(salary_dict.values(), index=salary_dict.keys())
 

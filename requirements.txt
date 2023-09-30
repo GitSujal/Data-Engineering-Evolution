@@ -10,3 +10,7 @@ argparse
 streamlit
 watchdog
 boto
+pyarrow
+pytest
+s3fs
+jinja2

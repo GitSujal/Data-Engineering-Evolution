@@ -1,0 +1,449 @@
+/* General page styles */
+body {
+    font-family: sans-serif;
+    color: #333;
+  }
+  
+  /* Introduction section */
+  #intro {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  #intro h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  #intro p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Overview of courses */
+  #courses {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+  
+  #courses h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  #courses ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  #courses ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  /* Testimonials from past students */
+  #testimonials {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+  
+  #testimonials h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .testimonial {
+    width: 45%;
+    margin-bottom: 50px;
+  }
+  
+  .testimonial p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  /* Call to action */
+  #cta {
+    text-align: center;
+  }
+  
+  #cta h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #444;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 900px) {
+    .testimonial {
+      width: 80%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #courses ul {
+      width: 90%;
+    }
+  }
+  
+/* General page styles */
+body {
+    font-family: sans-serif;
+    color: #333;
+  }
+  
+  /* Introduction section */
+  #intro {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  #intro h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  #intro p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  /* Course listings */
+  #course-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .course {
+    width: 30%;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .course h3 {
+    font-size: 1.5em;
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .course p {
+    font-size: 1.2em;
+    margin: 20px;
+  }
+  
+  .course ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .course ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .course .button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .course .button:hover {
+    background-color: #444;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 1200px) {
+    .course {
+      width: 45%;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .course {
+      width: 100%;
+    }
+  }
+
+/* Navigation bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin: 0 10px;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+  
+  nav a:hover {
+    color: #eee;
+  }
+
+/* Testimonials section */
+#testimonials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+#testimonials h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.testimonial {
+  width: 45%;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.testimonial img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  background-color: #eee;
+}
+
+.testimonial p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin: 20px;
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.testimonial p span {
+  font-style: italic;
+}
+
+
+/* General page styles */
+body {
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* Introduction section */
+#intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#intro h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+#intro p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Our team section */
+#team {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+#team h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.member {
+  width: 30%;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.member img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.member h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.member p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin: 0 20px;
+}
+
+/* Banner image */
+#banner {
+  width: 100%;
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* General page styles */
+body {
+  font-family: sans-serif;
+  color: #333;
+}
+
+/* Introduction section */
+#intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#intro h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+#intro p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* Contact form */
+#form {
+  width: 60%;
+  margin: 0 auto;
+}
+
+#form label {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+#form input, #form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.2em;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+#form input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#form input[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* Contact information */
+#info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+#info h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#info p {
+  font-size: 1.2em;
+  line-height: 1.5;
+  margin: 0 20px;
+  width: 30%;
+}
+
+/* Map */
+#map {
+  width: 100%;
+  height: 400px;
+}

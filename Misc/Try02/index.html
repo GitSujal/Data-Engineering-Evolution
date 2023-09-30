@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      
+      .lion {
+        width: 300px;
+        height: 300px;
+        background: url('https://i.imgur.com/7KGdZ8M.png');
+        background-size: cover;
+        cursor: none;
+      }
+      
+      .lion .face {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url('https://i.imgur.com/PjAaT7E.png');
+        background-size: cover;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lion">
+      <div class="face"></div>
+    </div>
+  </body>
+  <script>
+    const lion = document.querySelector('.lion');
+    const face = document.querySelector('.face');
+
+    document.addEventListener('mousemove', e => {
+      const { clientX, clientY } = e;
+      const x = clientX - lion.offsetLeft - face.offsetWidth / 2;
+      const y = clientY - lion.offsetTop - face.offsetHeight / 2;
+
+      face.style.top = `${y}px`;
+      face.style.left = `${x}px`;
+    });
+  </script>
+</html>

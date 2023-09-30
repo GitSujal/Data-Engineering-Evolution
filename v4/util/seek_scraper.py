@@ -8,7 +8,13 @@ import os
 import warnings
 import json
 import logging
+import boto3
+from v4.util.aws_utils import dataframe_to_s3, read_from_s3
+from v4.util.jinja_utils import read_rendered_config
+
 warnings.simplefilter(action='ignore', category=FutureWarning)
+
+# TODO: saving and reading parquet is not working with actual data. Problem with pyarrow version. Needs fixing.
 
 # set up logging
 logging.basicConfig(filename='seek_scraper.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
@@ -41,41 +47,28 @@ class SeekScraper:
         "searchDate" 
     ]
     # Constructor
-    def __init__(self, url:str=None, 
-                    job:str = None, 
-                    location:str = None, 
+    def __init__(self, job:str , 
+                    location:str, 
                     jobs_to_scrape: int = 100,
+                    config_file: str = 'config.json',
+                    profile_name: str = 'local',                    
                     log_level = logging.INFO, 
                     sleep_time:float = 0.2,
-                    data_folder: str = 'data',
-                    index_folder: str = 'index'
                     ):
-        if url is None and (job is None or location is None):
-            raise ValueError('Either url or job and location must be provided')
-        if url is not None:
-            if self.seek_base_url not in url:
-                self.url = f'{self.seek_base_url}{url}'
-            else:
-                self.url = url
-        else:
-            self.job = job
-            self.location = location
-            self.url = f'{self.seek_base_url}/{job}-jobs/in-{location}'
+        self.job = job.lower().replace(" ", "-")
+        self.location = location.lower().replace(" ", "-")
+        self.job_first_key = self.job.split('-')[0]
+        self.url = f'{self.seek_base_url}/{job}-jobs/in-{location}'
         self.jobs_to_scrape = jobs_to_scrape
         self.scrape_count = 0
-        self.debug = log_level == logging.DEBUG
-        if self.debug:
-            logger.setLevel(logging.DEBUG)
-        else:
-            logger.setLevel(log_level)
+        logger.setLevel(log_level)
         self.sleep_time = sleep_time
         self.columns = self.search_attributes +  self.job_attributes + ['jobDescription']
         self.data = pd.DataFrame(columns= self.columns)
-        self.data_folder = data_folder
-        if not os.path.exists(self.data_folder):
-            os.makedirs(self.data_folder)
-        self.local_file = f'{self.data_folder}/seek_scraper_raw_data.csv'
-        self.index_file = f'{self.data_folder}/seek_scraper_all_index.csv'
+        
+        self.config = read_rendered_config(config_file= config_file, profile_name= profile_name, 
+                                             job = self.job, location = self.location,
+                                             job_first_key = self.job_first_key)
         
     def make_request(self, url:str):
         logger.info(f'Making request to {url}')
@@ -135,7 +128,7 @@ class SeekScraper:
         job_description = self.default_if_none(job_description)
         # remove all non-alphanumeric characters
         if job_description is not None:
-            job_description = re.sub('\W+',' ', job_description).lower()
+            job_description = re.sub(r'\W+',' ', job_description).lower()
         return job_description
     
     def parse_job_attributes(self, response):
@@ -150,49 +143,103 @@ class SeekScraper:
         return sk_dl
 
     def save_to_csv(self):
-        logger.info(f'Saving data to {self.local_file}')
-
-        # if the csv exists append it based on job id
-        if os.path.exists(self.local_file):
-            # read the csv into a dataframe
-            df = pd.read_csv(self.local_file)
-            # find the new rows
-            new_rows = self.data[~self.data['jobId'].isin(df['jobId'])]
-            # append the new rows to the dataframe using concat
-            df = pd.concat([df, new_rows], ignore_index=True)
-            # save the dataframe to csv
-            df.to_csv(self.local_file, index=False)
+        if "local" not in self.config['name']:
+            full_file_key  = f"""s3://{self.config["raw-data-bucket"]}/{self.config["raw-data-folder"]}/{self.config["raw-data-filname-pattern"]}_{datetime.now().strftime('%Y%m%d')}.{self.config["raw-data-file-format"]}"""
+            logger.info(f'Saving data to s3 with key {full_file_key}')
+            if self.config["raw-data-file-format"] == 'csv':
+                self.data.to_csv(full_file_key, index=False)
+            elif self.config["raw-data-file-format"] == 'parquet':
+                self.data.to_parquet(full_file_key, index=False)
         else:
-            # save the dataframe to csv
-            self.data.to_csv(self.local_file, index=False)
-        logger.info(f'Saved data to {self.local_file}')
+            full_file_key = os.path.join(self.config["raw-data-folder"], 
+                                  f"{self.config['raw-data-filname-pattern']}.{self.config['raw-data-file-format']}")
+            logger.info(f'Saving data to {full_file_key}')
+            # if the csv exists append it based on job id
+            if os.path.exists(full_file_key):
+                # read the csv into a dataframe
+                df = pd.read_csv(full_file_key)
+                # find the new rows
+                new_rows = self.data[~self.data['jobId'].isin(df['jobId'])]
+                # append the new rows to the dataframe using concat
+                df = pd.concat([df, new_rows], ignore_index=True, sort=False)
+                # save the dataframe to csv
+                df.to_csv(full_file_key, index=False)
+            else:
+                # save the dataframe to csv
+                self.data.to_csv(full_file_key, index=False)
+        logger.info(f'Saved data to {full_file_key}')
+        return full_file_key
     
     def save_all_indexes(self, new_indexes):
-        logger.info(f'Saving all indexes to {self.index_file}')
-        # open the index file as dataframe and append the new indexes
-        if os.path.exists(self.index_file):
-            index_df = pd.read_csv(self.index_file)
-            # concat the new indexes
-            new_df = pd.DataFrame.from_dict({'jobID': new_indexes})
-
-            indexes = pd.concat([index_df, new_df], ignore_index=True)
-            # remove duplicates
-            indexes = indexes.drop_duplicates(subset=['jobID'], keep='first')
-            # save the indexes to csv
-            indexes.to_csv(self.index_file, index=False)
+        available_indexes = pd.DataFrame(columns=['jobId'])
+        if "local" not in self.config['name']:
+            full_file_key  = f"""s3://{self.config["raw-data-bucket"]}/{self.config["index-data-folder"]}/{self.config["index-data-file-pattern"]}_{datetime.now().strftime('%Y%m%d')}.{self.config["index-data-file-format"]}"""
+            logger.info(f'Saving data to s3 with key {full_file_key}')
+            if self.config["index-data-file-format"] == 'csv':
+                try:
+                    available_indexes = pd.read_csv(full_file_key)
+                except:
+                    pass
+            elif self.config["index-data-file-format"] == 'parquet':
+                try:
+                    available_indexes = pd.read_parquet(full_file_key)
+                except:
+                    pass
         else:
-            indexes = pd.DataFrame.from_dict({'jobID': new_indexes})
-            indexes.to_csv(self.index_file, index=False)
-        logger.info(f'Saved all indexes to {self.index_file}')
+            full_file_key = os.path.join(self.config["index-data-folder"], 
+                                  f"{self.config['index-data-file-pattern']}.{self.config['index-data-file-format']}")
+            if os.path.exists(full_file_key):
+                # available indexes
+                if self.config["index-data-file-format"] == 'csv':
+                    available_indexes = pd.read_csv(full_file_key)
+                elif self.config["index-data-file-format"] == 'parquet':
+                    available_indexes = pd.read_parquet(full_file_key)
+        # concat the new indexes
+        new_df = pd.DataFrame.from_dict({'jobId': new_indexes})
+        if len(available_indexes) > 0:
+            indexes = pd.concat([available_indexes, new_df], ignore_index=True, sort=False)
+            # remove duplicates
+            indexes = indexes.drop_duplicates(subset=['jobId'], keep='first')
+            # save the indexes
+            if self.config["index-data-file-format"] == 'csv':
+                indexes.to_csv(full_file_key, index=False)
+            elif self.config["index-data-file-format"] == 'parquet':
+                indexes.to_parquet(full_file_key, index=False)
+        else:
+            if self.config["index-data-file-format"] == 'csv':
+                new_df.to_csv(full_file_key, index=False)
+            elif self.config["index-data-file-format"] == 'parquet':
+                new_df.to_parquet(full_file_key, index=False)
+        logger.info(f'Saved all indexes to {full_file_key}')
+        return full_file_key
 
     def get_available_indexes(self):
-        logger.info(f'Getting available indexes from {self.index_file}')
-        if os.path.exists(self.index_file):
-            index_df = pd.read_csv(self.index_file)
-            return index_df['jobID'].astype(str).tolist()
+        logger.info(f'Getting available indexes from {self.config["index-data-folder"]}')
+        available_indexes = pd.DataFrame(columns=['jobId'])
+        if "local" not in self.config['name']:
+            full_file_key  = f"""s3://{self.config["raw-data-bucket"]}/{self.config["index-data-folder"]}/{self.config["index-data-file-pattern"]}_{datetime.now().strftime('%Y%m%d')}.{self.config["index-data-file-format"]}"""
+            logger.info(f'Saving data to s3 with key {full_file_key}')
+            if self.config["index-data-file-format"] == 'csv':
+                try:
+                    available_indexes = pd.read_csv(full_file_key)
+                except:
+                    pass
+            elif self.config["index-data-file-format"] == 'parquet':
+                try:
+                    available_indexes = pd.read_parquet(full_file_key)
+                except:
+                    pass
         else:
-            return []
-
+            full_file_key = os.path.join(self.config["index-data-folder"], 
+                                  f"{self.config['index-data-file-pattern']}.{self.config['index-data-file-format']}")
+            if os.path.exists(full_file_key):
+                # available indexes
+                if self.config["index-data-file-format"] == 'csv':
+                    available_indexes = pd.read_csv(full_file_key)
+                elif self.config["index-data-file-format"] == 'parquet':
+                    available_indexes = pd.read_parquet(full_file_key)
+        return available_indexes['jobId'].astype(str).tolist()
+        
     def set_batch_size(self, jobs_to_scrape):
         if jobs_to_scrape > 100:
             self.batch_size = 100
@@ -244,11 +291,9 @@ class SeekScraper:
                         job_metadata_df = pd.DataFrame.from_dict(job_metadata)
                         # if self.debug:
                         #     print(job_metadata_df)
-                        self.data = pd.concat([self.data, job_metadata_df], ignore_index=True)
+                        self.data = pd.concat([self.data, job_metadata_df], ignore_index=True, sort=False)
                         batch_scrape_count += 1
                 sleep(self.sleep_time)
-                if self.debug:
-                    print(self.data)
                 if save_local:
                     self.save_to_csv()
                     self.save_all_indexes(batch)

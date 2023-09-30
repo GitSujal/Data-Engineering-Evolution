@@ -1,0 +1,56 @@
+{
+    "profiles": [
+        {
+            "name": "remote-dev",
+            "raw-data-bucket": "jobs-data-scraped-raw",
+            "raw-data-folder": "raw-data",
+            "index-data-folder": "index-data",
+            "raw-data-filname-pattern": "jobs_{{job}}_{{location}}",
+            "raw-data-file-format": "json",
+            "index-data-file-pattern": "jobs_{{job}}_{{location}}",
+            "index-data-file-format": "json",
+            "processed-data-bucket": "jobs-data-scraped-processed",
+            "processed-data-folder": "processed-data/{{job}}",
+            "processed-data-filname-pattern": "jobs_{{job}}_{{location}}",
+            "processed-data-file-format": "parquet",
+            "keywords-bucket": "keywords-json-file",
+            "keywords-folder": "{{job_first_key}}-jobs",
+            "keywords-filname-pattern": "_keywords.json",
+            "keywords-file-format": "json"
+        },
+        {
+            "name": "remote-dump",
+            "raw-data-bucket": "test-bucket-to-dump-data",
+            "raw-data-folder": "raw-data",
+            "index-data-folder": "index-data",
+            "raw-data-filname-pattern": "jobs_{{job}}_{{location}}",
+            "raw-data-file-format": "csv",
+            "index-data-file-pattern": "jobs_{{job}}_{{location}}",
+            "index-data-file-format": "csv",
+            "processed-data-bucket": "test-bucket-to-dump-data",
+            "processed-data-folder": "processed-data/{{job}}",
+            "processed-data-filname-pattern": "jobs_{{job}}_{{location}}",
+            "processed-data-file-format": "csv",
+            "keywords-bucket": "keywords-json-file",
+            "keywords-folder": "{{job_first_key}}-jobs",
+            "keywords-filname-pattern": "_keywords.json",
+            "keywords-file-format": "json"
+        },
+        {
+            "name": "local",
+            "raw-data-folder": "data/raw-data",
+            "raw-data-filname-pattern": "seek_scraper_raw_data",
+            "raw-data-file-format": "csv",
+            "index-data-folder": "data/index",
+            "index-data-file-pattern": "seek_scraper_index_data",
+            "index-data-file-format": "csv",
+            "processed-data-folder": "data/processed",
+            "processed-data-filname-pattern": "seek_scraper_processed_data",
+            "processed-data-file-format": "csv",
+            "keywords-folder": "data/keywords",
+            "keywords-filname-pattern": "_keywords.json",
+            "keywords-file-format": "json"
+        }
+ 
+    ]
+}

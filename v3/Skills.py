@@ -5,7 +5,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 
-st.set_page_config(page_title="Top Skills For Data Professionals", page_icon="🔨")
+st.set_page_config(page_title="Top Skills For Data Professionals", page_icon="🔨", layout="wide")
 st.title("Top Skills For Data Professionals")
 
 with st.sidebar:
@@ -276,8 +276,10 @@ with salary:
     # increase the font size for y axis
     fig.update_yaxes(title_font=dict(size=14))
 
+
     # show the chart
     st.plotly_chart(fig, use_container_width=True, sharing='streamlit', config={'displaylogo': False}, theme='streamlit')
+
     # show some stats
     st.info("Above chart is based on {} jobs scraped from Seek".format(len(san_sal_df)), icon="ℹ️")
 

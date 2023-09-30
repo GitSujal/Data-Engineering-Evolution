@@ -1,12 +1,13 @@
 import streamlit as st
 from data_preparation import default
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
+import json
 
 
-st.set_page_config(page_title="Salaries For Data Professionals", page_icon="💵")
-st.title("Salaries For Data Professionals")
+st.set_page_config(page_title="Salary comparison for Data Engineers", page_icon="🔨", layout="wide")
+st.title("Salary comparison for Data Engineers")
+
 
 with st.sidebar:
     st.header("About")
@@ -15,106 +16,170 @@ with st.sidebar:
     * you can also use it to find the salaries for those roles
     Hope this helps you in your job search! 
     """)
-
+    
 with st.spinner("Refreshing Data..."):
+    if st.button("Refresh Data"):
+        default()
     # read the processed data
     df = pd.read_csv('data/processed/seek_scraper_processed_data.csv', na_filter=False)
     st.info("Processed {} jobs".format(len(df)), icon="ℹ️")
+# skills keywords list
+with open('data/keywords/skill_keywords.json') as f:
+    skills = json.load(f)
+# programming languages keywords list
+with open('data/keywords/programming_keywords.json') as f:
+    langugages = json.load(f)
 
-left_column, mid_column, right_column = st.columns(3)
-with left_column:
-    # job search term selector
-    job_selection_list = df['searchKeywords'].unique().tolist()
-    # add All to the beginning of the list
-    job_selection_list.insert(0, "All")
-    selection_job_search = st.selectbox('Select a search term', job_selection_list, index=0)
-    # only show data for selected search term
-    if selection_job_search != "All":
-        sel_df = df[df['searchKeywords'] == selection_job_search]
-    else:
-        sel_df = df
-with mid_column:
-    # job location selector
-    location_selection_list = sel_df['jobLocation'].unique().tolist()
-    # add All to the beginning of the list
-    location_selection_list.insert(0, "All")
-    selection_job_location = st.selectbox('Select a location', location_selection_list, index=0)
-    # only show data for selected location
-    if selection_job_location != "All":
-        sel_df = sel_df[sel_df['jobLocation'] == selection_job_location]
+df['has_valid_salary'] = df['per_annum'].apply(lambda x: "Salary Mentioned" if x >= 50000 and x <= 500000 else "Salary Not Mentioned")
+# produce a frequency distribution of the salary where the salary is mentioned
+valid_sals = df[df['has_valid_salary'] == 'Salary Mentioned']
 
-with right_column:
-    # Number skill selctor for slider
-    count_dict = {"Top 5": 5, "Top 10": 10, "Top 20": 20, "Top 50": 50, "All" : 100}
-    selection_skill_number = st.selectbox('Select number of skills to show', list(count_dict.keys()), index=4)
+avg, high, skill ,lang =  st.tabs(["Average Salary", "Higher Salary", "Salary by Skill", "Salary by Languages"])
 
-l2, r2 = st.columns(2)
-with l2:
-    # industry selector
-    industry_selection_list = sel_df['jobClassification'].unique().tolist()
-    # add All to the beginning of the list
-    industry_selection_list.insert(0, "All")
-    selection_industry = st.selectbox('Select an industry', industry_selection_list)
-    # only show data for selected industry
-    if selection_industry != "All":
-        sel_df = sel_df[sel_df['jobClassification'] == selection_industry]
+with avg:
+    # average per_annum by job title where the count is at least 5 and the job title contains engineer
+    eng_sal = valid_sals[valid_sals['jobTitle'].str.contains('engineer', case=False)]
+    sal_avg = valid_sals.groupby('jobTitle')['per_annum'].mean().reset_index()
+    eng_count = eng_sal.groupby('jobTitle')['per_annum'].count().reset_index()
+    eng_count = eng_count[eng_count['per_annum'] > 5]
+    sal_avg = sal_avg.merge(eng_count, on='jobTitle')
+    sal_avg = sal_avg.sort_values(by='per_annum_x', ascending=True)
+    sal_avg = sal_avg.tail(30)
+    fig = go.Figure(data=[go.Bar(y=sal_avg['jobTitle'], x=sal_avg['per_annum_x'],
+                                orientation='h', text=sal_avg['per_annum_x'],
+                                textposition='outside',
+                                showlegend=False,
+                                texttemplate='%{text:.3s}'
+                                )
+                                ])
 
-with r2:
-    # job type selector
-    job_type_selection_list = sel_df['jobWorkType'].unique().tolist()
-    # add All to the beginning of the list
-    job_type_selection_list.insert(0, "All")
-    selection_job_type = st.selectbox('Select a job type', job_type_selection_list, index=0)
-    # only show data for selected job type
-    if selection_job_type != "All":
-        sel_df = sel_df[sel_df['jobWorkType'] == selection_job_type]
+    # update the x axis range to 50000 to 200000
+    fig.update_xaxes(range=[50000, 200000])
 
+    # increase the font size and make it black and bold
+    fig.update_layout(font=dict(size=12, color='black'))
+    fig.update_layout(title_text='Average Salary range for Data engineers')
+    fig.update_layout(width=1280, height=720)
+    # show the chart
+    st.plotly_chart(fig, use_container_width=True, sharing='streamlit', config={'displaylogo': False}, theme='streamlit')
+    # show some stats
+    st.info("Above chart is based on {} jobs scraped from Seek".format(len(valid_sals)), icon="ℹ️")
 
-# aggregated stats
-agg_df = sel_df.groupby('jobTitle').agg({'per_annum': 'mean', 
-                                         'per_hour': 'mean',
-                                            'per_day': 'mean',
-                                             'jobTitle': 'count' }).rename(columns={'jobTitle': 'count'}).reset_index()
+with high:
+    eng_sal = valid_sals[valid_sals['jobTitle'].str.contains('data', case=False)]
+    sal_avg = valid_sals.groupby('jobTitle')['per_annum'].mean().reset_index()
+    eng_count = eng_sal.groupby('jobTitle')['per_annum'].count().reset_index()
+    eng_count = eng_count[eng_count['per_annum'] < 5]
+    sal_avg = sal_avg[sal_avg['per_annum'] > 300000]
+    sal_avg = sal_avg.merge(eng_count, on='jobTitle')
+    sal_avg = sal_avg.sort_values(by='per_annum_x', ascending=True)
+    # only keep the job title to 30 characters
+    sal_avg['jobTitle'] = sal_avg['jobTitle'].apply(lambda x: x[:30])
+    sal_avg = sal_avg.tail(30)
+    fig = go.Figure(data=[go.Bar(y=sal_avg['jobTitle'], x=sal_avg['per_annum_x'],
+                                orientation='h', text=sal_avg['per_annum_x'],
+                                textposition='outside',
+                                showlegend=False,
+                                texttemplate='%{text:.3s}'
+                                )
+                                ])
+    # increase the font size and make it black and bold
+    fig.update_layout(font=dict(size=12, color='black'))
+    fig.update_layout(title_text='Higher Salary Range for Data Engineers')
+    # update the x axis range to 200000 to 200000
+    fig.update_xaxes(range=[200000, 400000])
 
-# make it into a dataframe
-agg_df = pd.DataFrame(agg_df)
+    fig.update_layout(width=1280, height=720)
+    # show the chart
+    st.plotly_chart(fig, use_container_width=True, sharing='streamlit', config={'displaylogo': False}, theme='streamlit')
+    # show some stats
+    st.info("Above chart is based on {} jobs scraped from Seek".format(len(valid_sals)), icon="ℹ️")
 
-selection_type = st.radio("Select a view", ('Top by Salary', 'Top by Count'), horizontal=True)
-if selection_type == 'Top by Salary':
-    agg_df = agg_df.sort_values(by='per_annum', ascending=False)
-    # limit the number of rows based on selection
-    agg_df = agg_df.head(count_dict[selection_skill_number])
-else:
-    agg_df = agg_df.sort_values(by='count', ascending=False)
-    # limit the number of rows based on selection
-    agg_df = agg_df.head(count_dict[selection_skill_number])
-        
-# # produce same graph using go
-fig = go.Figure(data=[go.Bar(y=agg_df['jobTitle'], x=agg_df['per_annum'], 
-                             orientation='h', text=agg_df['per_annum'], 
-                             textposition='outside', 
+with skill:
+    skill_salary = {}
+    for key,val in skills.items():
+        count = 0
+        sal = 0
+        for index, row in valid_sals.iterrows():
+            if val in row['Skill']:
+                count += 1
+                sal += row['per_annum']
+        if count > 10:
+            skill_salary[val] = sal/count
+    skill_salary = {k: v for k, v in sorted(skill_salary.items(), key=lambda item: item[1], reverse=True)}
+    skill_salary = pd.DataFrame.from_dict(skill_salary, orient='index', columns=['per_annum'])
+    skill_salary = skill_salary.reset_index()
+    skill_salary.columns = ['skill', 'per_annum']
+    skill_salary['per_annum'] = skill_salary['per_annum'].apply(lambda x: round(x, 2))
+    skill_salary = skill_salary.sort_values(by='per_annum', ascending=True)
+    # only show the top 20 skills
+    skill_salary = skill_salary.tail(30)
+    fig = go.Figure(data=[go.Bar(y=skill_salary['skill'], x=skill_salary['per_annum'],
+                                orientation='h', text=skill_salary['per_annum'], 
+                                textposition='outside', 
+                                showlegend=False, 
+                                texttemplate='%{text:.3s}'
+                                )
+                                ])
+    # increase the font size and make it black and bold
+    fig.update_layout(font=dict(size=12, color='black'))
 
-                             showlegend=False, 
-                             texttemplate='%{text:.2s}', 
-                             marker_color=agg_df['count'], 
-                             
-                             )])
+    # set the title
+    fig.update_layout(title_text='Average Salary by Skills')
 
-# reduce graph margins
-fig.update_layout(margin=dict(l=0, r=0, t=30, b=0))
+    # update the x axis range to 50000 to 200000
+    fig.update_xaxes(range=[50000, 200000])
 
-fig.update_layout(yaxis=dict(autorange="reversed"))
+    # set size to 1280 x 720
+    fig.update_layout(width=1280, height=720)
+    # show the chart
+    st.plotly_chart(fig, use_container_width=True, sharing='streamlit', config={'displaylogo': False}, theme='streamlit')
+    # show some stats
+    st.info("Above chart is based on {} jobs scraped from Seek".format(len(valid_sals)), icon="ℹ️")
 
-# increase the font size and make it black and bold
-fig.update_layout(font=dict(size=12, color='black'))
+with lang:
+    language_salary = {}
+    for key,val in langugages.items():
+        count = 0
+        sal = 0
+        for index, row in valid_sals.iterrows():
+            if val in row['Programming']:
+                count += 1
+                sal += row['per_annum']
+        if count > 10:
+            language_salary[val] = sal/count
+    language_salary = {k: v for k, v in sorted(language_salary.items(), key=lambda item: item[1], reverse=True)}
+    language_salary = pd.DataFrame.from_dict(language_salary, orient='index', columns=['per_annum'])
+    language_salary = language_salary.reset_index()
+    language_salary.columns = ['language', 'per_annum']
+    language_salary['per_annum'] = language_salary['per_annum'].apply(lambda x: round(x, 2))
+    language_salary = language_salary.sort_values(by='per_annum', ascending=True)
+    # show only top 30
+    language_salary = language_salary.tail(30)
+    fig = go.Figure(data=[go.Bar(y=language_salary['language'], x=language_salary['per_annum'],
+                                orientation='h', text=language_salary['per_annum'], 
+                                textposition='outside', 
+                                showlegend=False, 
+                                texttemplate='%{text:.3s}'
+                                )
+                                ])
+    # increase the font size and make it black and bold
+    fig.update_layout(font=dict(size=12, color='black'))
 
-# increase the font size for y axis
-fig.update_yaxes(title_font=dict(size=14))
+    # update the x axis range to 50000 to 200000
+    fig.update_xaxes(range=[50000, 200000])
 
-# set the title
-fig.update_layout(title_text=f"Salaries for {selection_skill_number} for {selection_job_search}")
-# show the chart
-st.plotly_chart(fig, use_container_width=True, sharing='streamlit', config={'displaylogo': False}, theme='streamlit')
+    # set the title
+    fig.update_layout(title_text='Average Salary by Programming Language')
 
-# show some stats
-st.info("Above chart is based on {} jobs scraped from Seek".format(len(sel_df)), icon="ℹ️")
+    # set size to 1280 x 720
+    fig.update_layout(width=1280, height=720)
+
+    # show the chart
+    st.plotly_chart(fig, use_container_width=True, sharing='streamlit', config={'displaylogo': False}, theme='streamlit')
+    # show some stats
+    st.info("Above chart is based on {} jobs scraped from Seek".format(len(valid_sals)), icon="ℹ️")
+
+# add footer
+st.markdown("&copy; 2023 All rights reserved. Sujal Dhungana", unsafe_allow_html=True)
+
