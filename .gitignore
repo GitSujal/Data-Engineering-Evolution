@@ -7,3 +7,7 @@ data/
 .streamlit/
 *.csv
 *.log
+**/models/
+**/models/*
+**/data/
+**/data/*
