@@ -290,7 +290,7 @@ def main():
     if len(raw_data) > 0:
         print(f'Processing {len(raw_data)} new jobs from the database')
         # get the keyword dictionary files
-        keyword_dict_file = [os.path.join(cwd, 'data', 'keywords', file)
+        keyword_dict_file = [os.path.join(cwd, 'keywords', file)
                             for file in os.listdir(os.path.join(cwd, 'data', 'keywords'))]
         
         # get the output file
