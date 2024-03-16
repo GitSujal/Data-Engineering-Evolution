@@ -252,10 +252,11 @@ class SeekScraper:
             print('All indexes saved')
 
     def get_available_indexes(self):
-        if self.debug:
-            logging.info(f'Getting available indexes from {self.index_file}')
-            print(f'Getting available indexes from {self.index_file}')
+
         if self.sql_engine is None:
+            if self.debug:
+                logging.info(f'Getting available indexes from {self.index_file}')
+                print(f'Getting available indexes from {self.index_file}')
             if os.path.exists(self.index_file):
                 index_df = pd.read_csv(self.index_file)
                 return index_df['jobId'].astype(int).tolist()
@@ -263,6 +264,9 @@ class SeekScraper:
                 return []
         else:
             try:
+                if self.debug:
+                    logging.info(f'Getting available indexes from sql')
+                    print(f'Getting available indexes from sql')
                 index_df_sql = "SELECT jobId FROM dbo.jobs_indexes"
                 index_df = pd.read_sql(index_df_sql, self.sql_engine)
                 return index_df['jobId'].astype(int).tolist()
@@ -297,40 +301,43 @@ class SeekScraper:
 
         # cut off any excess if any 
         job_ids_to_scrape = job_ids_to_scrape[:self.jobs_to_scrape]
-        scraping_reqired_count = len(job_ids_to_scrape)
+        scraping_required_count = len(job_ids_to_scrape)
 
-        if scraping_reqired_count>0:
+        if scraping_required_count>0:
             if self.debug:
-                logging.info(f'{scraping_reqired_count} jobs to scrape')
-                print(f'{scraping_reqired_count} jobs to scrape')
+                logging.info(f'{scraping_required_count} jobs to scrape')
+                print(f'{scraping_required_count} jobs to scrape')
             # do batching based on jobs_to_scrape size
-            self.set_batch_size(scraping_reqired_count)
+            self.set_batch_size(scraping_required_count)
+            jobs_scraped = []
             # scrape the jobs
-            for i in range(0, scraping_reqired_count, self.batch_size):
+            for i in range(0, scraping_required_count, self.batch_size):
                 batch = job_ids_to_scrape[i:i + self.batch_size]
                 batch_scrape_count = 0
                 # empty the df before each batch to keep the memory usage low
                 self.data = pd.DataFrame(columns=self.columns)
                 for job in batch:
-                    response = self.make_request(f'{self.seek_base_url}/job/{str(job)}')
-                    if response is not None:
-                        job_description = self.parse_job_description(response)
-                        job_metadata = self.parse_job_attributes(response)
-                        # only keeps the keys that are in the job_attributes list
-                        job_metadata = {k: [v] for k, v in job_metadata.items() if k in self.job_attributes}
-                        # if key not in job_metadata add it with value "Unknown"
-                        for key in self.job_attributes:
-                            if key not in job_metadata:
-                                job_metadata[key] = ["Unknown"]
-                        job_metadata['jobDescription'] = [job_description]
-                        job_metadata["searchKeywords"] = [self.job]
-                        job_metadata["searchLocation"] = [self.location]
-                        job_metadata["searchDate"] = [datetime.now()]
-                        job_metadata_df = pd.DataFrame.from_dict(job_metadata)
-                        # if self.debug:
-                        #     print(job_metadata_df)
-                        self.data = pd.concat([self.data, job_metadata_df], ignore_index=True)
-                        batch_scrape_count += 1
+                    if job not in jobs_scraped:
+                        response = self.make_request(f'{self.seek_base_url}/job/{str(job)}')
+                        if response is not None:
+                            job_description = self.parse_job_description(response)
+                            job_metadata = self.parse_job_attributes(response)
+                            # only keeps the keys that are in the job_attributes list
+                            job_metadata = {k: [v] for k, v in job_metadata.items() if k in self.job_attributes}
+                            # if key not in job_metadata add it with value "Unknown"
+                            for key in self.job_attributes:
+                                if key not in job_metadata:
+                                    job_metadata[key] = ["Unknown"]
+                            job_metadata['jobDescription'] = [job_description]
+                            job_metadata["searchKeywords"] = [self.job]
+                            job_metadata["searchLocation"] = [self.location]
+                            job_metadata["searchDate"] = [datetime.now()]
+                            job_metadata_df = pd.DataFrame.from_dict(job_metadata)
+                            # if self.debug:
+                            #     print(job_metadata_df)
+                            self.data = pd.concat([self.data, job_metadata_df], ignore_index=True)
+                            batch_scrape_count += 1
+                            jobs_scraped.append(job)
                 sleep(self.sleep_time)
                 if self.debug:
                     print(self.data)

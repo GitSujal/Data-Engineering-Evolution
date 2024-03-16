@@ -21,6 +21,7 @@ server = config['db_credentials']['server']
 database = config['db_credentials']['database']
 user = config['db_credentials']['user']
 password = os.getenv('DP101_PASSWORD')
+sleep_time = config['sleep_time']
 
 sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server",
                                   connect_args={'connect_timeout': 30})
@@ -28,7 +29,8 @@ sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server
 
 def scrape_data(job: str, location: str, jobs_to_scrape: int, debug: bool=False, 
                 save_local:bool = False,
-                save_sql:bool = False, sql_engine: sqlalchemy.engine.base.Engine = None
+                save_sql:bool = False, sql_engine: sqlalchemy.engine.base.Engine = None,
+                sleep_time:float = 0.0,
                 ) -> pd.DataFrame:
     """
     scrape data from seek
@@ -38,7 +40,11 @@ def scrape_data(job: str, location: str, jobs_to_scrape: int, debug: bool=False,
     :param debug: debug mode
     :return: dataframe with scraped data 
     """
-    ss = SeekScraper(job=job, location=location, jobs_to_scrape=jobs_to_scrape, debug=debug, sql_engine=sql_engine)
+    ss = SeekScraper(job=job, location=location, 
+                     jobs_to_scrape=jobs_to_scrape, 
+                     debug=debug, 
+                     sleep_time=sleep_time, 
+                     sql_engine=sql_engine)
     logger.info(f'Starting to scrape {jobs_to_scrape} jobs for {job} in {location}')
     data = ss(save_local=save_local, save_sql=save_sql)
     # print success message with job count  job and location
@@ -63,5 +69,7 @@ if __name__ == '__main__':
 
     # call the scrape data function
     scrape_data(job=args.job, location=args.location, jobs_to_scrape=args.num_jobs_to_scrape,
+                sleep_time=sleep_time,
+                save_local=True, save_sql=True, sql_engine=sql_engine,
                  debug=args.debug)
 

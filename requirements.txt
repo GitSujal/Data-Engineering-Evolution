@@ -4,13 +4,11 @@ matplotlib
 ipywidgets
 requests
 beautifulsoup4
-requests-ip-rotator
-plotly
+plotly       
 argparse
 streamlit
-watchdog
-boto
 pyarrow
 pytest
-s3fs
 jinja2
+pyarrow
+pyyaml
