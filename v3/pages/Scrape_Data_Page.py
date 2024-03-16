@@ -18,7 +18,7 @@ with r1:
 
 with st.spinner("Scraping Data..."):
     if st.button("Scrape Data"):
-        df = scrape_data(job=search_term, location=location, pages=pages, skip=1, debug=False)
+        df = scrape_data(job=search_term, location=location, jobs_to_scrape=pages*100, debug=False)
         with st.spinner("Saving Data..."):
             st.info(f"{len(df)} jobs scraped and saved to data/seek_scraper_raw_data.csv", icon="ℹ️")
         # show the raw data in a table upto 10 rows

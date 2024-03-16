@@ -21,12 +21,13 @@ def scrape_data(job: str, location: str, jobs_to_scrape: int, debug: bool=False)
 if __name__ == '__main__':
     # parse the command line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('--job', type=str, default='data-analyst', help='Job title to scrape (default: data-analyst)')
-    parser.add_argument('--location', type=str, default='perth', help='Location to scrape (default: perth)')
-    parser.add_argument('--jobs_to_scrape', type=int, default=100, help='Number of jobs to scrape (default: 100)')
+    parser.add_argument('-j','--job', type=str, default='data-analyst', help='Job title to scrape (default: data-analyst)')
+    parser.add_argument('-l','--location', type=str, default='perth', help='Location to scrape (default: perth)')
+    parser.add_argument('-n','--num_jobs_to_scrape', type=int, default=100, help='Number of jobs to scrape (default: 100)')
     parser.add_argument('--debug', type=bool, default=False, help='Debug mode (default: False)')
     args = parser.parse_args()
 
     # call the scrape data function
-    scrape_data(job=args.job, location=args.location, jobs_to_scrape=args.jobs_to_scrape, debug=args.debug)
+    scrape_data(job=args.job, location=args.location, jobs_to_scrape=args.num_jobs_to_scrape,
+                 debug=args.debug)
 

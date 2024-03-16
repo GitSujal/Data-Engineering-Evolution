@@ -10,11 +10,6 @@ import json
 import logging
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-# set up logging
-logging.basicConfig(filename='seek_scraper.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 
 # Class to scrape data from seek.com.au
 class SeekScraper:
@@ -48,10 +43,12 @@ class SeekScraper:
                     location:str = None, 
                     jobs_to_scrape: int = 100,
                     debug:bool = False,
-                    sleep_time:float = 0.2,
-                    data_folder: str = 'data'
+                    sleep_time:float = 0.1,
+                    data_folder: str = 'data',
+                    sql_engine = None
                     ):
         if url is None and (job is None or location is None):
+            logging.error('Either url or job and location must be provided')
             raise ValueError('Either url or job and location must be provided')
         if url is not None:
             if self.seek_base_url not in url:
@@ -73,6 +70,8 @@ class SeekScraper:
             os.makedirs(self.data_folder)
         self.local_file = f'{self.data_folder}/seek_scraper_raw_data.csv'
         self.index_file = f'{self.data_folder}/seek_scraper_all_index.csv'
+
+        self.sql_engine = sql_engine
         
     def make_request(self, url:str):
         if self.debug:
@@ -114,15 +113,19 @@ class SeekScraper:
                     #     print(seek_redux_data)
         self.total_jobs_found = int(sk_dl['jobsCount'])
         if self.total_jobs_found < self.jobs_to_scrape:
+            logging.info(f'Only {self.total_jobs_found} jobs found, reducing jobs to scrape to {self.total_jobs_found}')
             print(f'Only {self.total_jobs_found} jobs found, reducing jobs to scrape to {self.total_jobs_found}')
             self.jobs_to_scrape = self.total_jobs_found
-        for job in seek_redux_data['results']['jobIds']:
-            if job not in available_indices:
+        for jobid in seek_redux_data['results']['jobIds']:
+            jobid = int(jobid)
+            if jobid not in available_indices:
                 # found new job 
-                job_ids_to_scrape.append(job)
+                job_ids_to_scrape.append(jobid)
             else:            
                 if self.debug:
-                    print(f'Job {job} already scraped')
+                    if self.debug:
+                        logging.info(f'Job {jobid} already scraped')
+                    print(f'Job {jobid} already scraped')
             self.scrape_count += 1
 
         return job_ids_to_scrape
@@ -151,6 +154,7 @@ class SeekScraper:
 
     def save_to_csv(self):
         if self.debug:
+            logging.info(f'Saving data to {self.local_file}')
             print(f'Saving data to {self.local_file}')
 
         # if the csv exists append it based on job id
@@ -167,45 +171,118 @@ class SeekScraper:
             # save the dataframe to csv
             self.data.to_csv(self.local_file, index=False)
         if self.debug:
+            logging.info('Data saved to csv %s', self.local_file)
             print('Data saved')
+    
+    def save_to_sql(self):
+        # de-duping the data based on jobId
+        self.data = self.data.drop_duplicates(subset=['jobId'], keep='first')
+        if self.debug:
+            logging.info(f'Saving data to sql')
+            print(f'Saving data to sql')
+        # Read existing data from sql
+        if self.sql_engine is not None:
+            existing_df = pd.read_sql("SELECT jobId FROM dbo.jobs", self.sql_engine)
+            # find the new rows
+            new_rows = self.data[~self.data['jobId'].isin(existing_df['jobId'])]
+            # append the new rows to the dataframe using concat
+            # required columns are all columns except jobDescription
+            req_columns = [col for col in new_rows.columns if col != 'jobDescription']
+            # save the new rows to sql
+            new_rows[req_columns].to_sql('jobs', self.sql_engine, if_exists='append', index=False)
+            if self.debug:
+                logging.info('Data saved to sql')
+                print('Data saved to sql')
+            # load the job description to a separate table
+            job_description_df = new_rows[['jobId', 'jobDescription']]
+            # save the job description to sql
+            job_description_df.to_sql('jobs_descriptions', self.sql_engine, if_exists='append', index=False)
+
+    def save_all_indexes_sql(self, new_indexes):
+        if self.debug:
+            logging.info(f'Saving all indexes to sql')
+            print(f'Saving all indexes to sql')
+        # open the index file as dataframe and append the new indexes
+        if self.sql_engine is not None:
+            existing_df = pd.read_sql("SELECT jobId FROM dbo.jobs_indexes", self.sql_engine)
+            # concat the new indexes
+            new_df = pd.DataFrame.from_dict({'jobId': new_indexes,
+                                             "scrapeDate": datetime.now(),
+                                             })
+            # de-duping the data based on jobId
+            new_df = new_df.drop_duplicates(subset=['jobId'], keep='first')
+            # new rows
+            new_rows = new_df[~new_df['jobId'].isin(existing_df['jobId'])]
+            # write the new rows to sql
+            new_rows.to_sql('jobs_indexes', self.sql_engine, if_exists='append', index=False)
+
+            if self.debug:
+                logging.info('All indexes saved to sql')
+                print('All indexes saved to sql')
+            
+        if self.debug:
+            logging.info('All indexes saved to sql')
+            print('All indexes saved to sql')
     
     def save_all_indexes(self, new_indexes):
         if self.debug:
+            logging.info(f'Saving all indexes to {self.index_file}')
             print(f'Saving all indexes to {self.index_file}')
         # open the index file as dataframe and append the new indexes
         if os.path.exists(self.index_file):
             index_df = pd.read_csv(self.index_file)
             # concat the new indexes
-            new_df = pd.DataFrame.from_dict({'jobID': new_indexes})
+            new_df = pd.DataFrame.from_dict({'jobId': new_indexes,
+                                             "scrapeDate": datetime.now(),
+                                             })
 
+            # append the new rows to the dataframe using concat
             indexes = pd.concat([index_df, new_df], ignore_index=True)
             # remove duplicates
-            indexes = indexes.drop_duplicates(subset=['jobID'], keep='first')
+            indexes = indexes.drop_duplicates(subset=['jobId'], keep='first')
             # save the indexes to csv
             indexes.to_csv(self.index_file, index=False)
         else:
-            indexes = pd.DataFrame.from_dict({'jobID': new_indexes})
+            indexes = pd.DataFrame.from_dict({'jobId': new_indexes,
+                                             "scrapeDate": datetime.now(),
+                                             })
             indexes.to_csv(self.index_file, index=False)
         if self.debug:
+            logging.info('All indexes saved to %s', self.index_file)
             print('All indexes saved')
 
     def get_available_indexes(self):
         if self.debug:
+            logging.info(f'Getting available indexes from {self.index_file}')
             print(f'Getting available indexes from {self.index_file}')
-        if os.path.exists(self.index_file):
-            index_df = pd.read_csv(self.index_file)
-            return index_df['jobID'].astype(str).tolist()
+        if self.sql_engine is None:
+            if os.path.exists(self.index_file):
+                index_df = pd.read_csv(self.index_file)
+                return index_df['jobId'].astype(int).tolist()
+            else:
+                return []
         else:
-            return []
-
+            try:
+                index_df_sql = "SELECT jobId FROM dbo.jobs_indexes"
+                index_df = pd.read_sql(index_df_sql, self.sql_engine)
+                return index_df['jobId'].astype(int).tolist()
+            except Exception as e:
+                logging.info(f'Error getting indexes from sql {e}')
+                print(f'Error getting indexes from sql {e}')
+                return []
+    
     def set_batch_size(self, jobs_to_scrape):
         if jobs_to_scrape > 100:
             self.batch_size = 100
         else:
             self.batch_size = jobs_to_scrape
-
-    def __call__(self, save_local = True):
         if self.debug:
+            logging.info(f'Batch size set to {self.batch_size}')
+            print(f'Batch size set to {self.batch_size}')
+
+    def __call__(self, save_local:bool = True, save_sql:bool = False):
+        if self.debug:
+            logging.info(f'Calling SeekScraper with url: {self.url}')
             print(f'Calling SeekScraper with url: {self.url}')
         available_indexes = self.get_available_indexes()
         job_ids_to_scrape = []
@@ -224,6 +301,7 @@ class SeekScraper:
 
         if scraping_reqired_count>0:
             if self.debug:
+                logging.info(f'{scraping_reqired_count} jobs to scrape')
                 print(f'{scraping_reqired_count} jobs to scrape')
             # do batching based on jobs_to_scrape size
             self.set_batch_size(scraping_reqired_count)
@@ -234,7 +312,7 @@ class SeekScraper:
                 # empty the df before each batch to keep the memory usage low
                 self.data = pd.DataFrame(columns=self.columns)
                 for job in batch:
-                    response = self.make_request(f'{self.seek_base_url}/job/{job}')
+                    response = self.make_request(f'{self.seek_base_url}/job/{str(job)}')
                     if response is not None:
                         job_description = self.parse_job_description(response)
                         job_metadata = self.parse_job_attributes(response)
@@ -247,7 +325,7 @@ class SeekScraper:
                         job_metadata['jobDescription'] = [job_description]
                         job_metadata["searchKeywords"] = [self.job]
                         job_metadata["searchLocation"] = [self.location]
-                        job_metadata["searchDate"] = [datetime.now().strftime("%Y-%m-%d %H:%M:%S")]
+                        job_metadata["searchDate"] = [datetime.now()]
                         job_metadata_df = pd.DataFrame.from_dict(job_metadata)
                         # if self.debug:
                         #     print(job_metadata_df)
@@ -259,7 +337,10 @@ class SeekScraper:
                 if save_local:
                     self.save_to_csv()
                     self.save_all_indexes(batch)
-
+                if self.sql_engine is not None and save_sql:
+                   self.save_to_sql()
+                   self.save_all_indexes_sql(batch)
                 print(f'Scraped {batch_scrape_count} jobs batch number {i//self.batch_size + 1}')
+                logging.info(f'Scraped {batch_scrape_count} jobs batch number {i//self.batch_size + 1}')
             
         return self.data
