@@ -291,7 +291,7 @@ def main():
         print(f'Processing {len(raw_data)} new jobs from the database')
         # get the keyword dictionary files
         keyword_dict_file = [os.path.join(cwd, 'keywords', file)
-                            for file in os.listdir(os.path.join(cwd, 'data', 'keywords'))]
+                            for file in os.listdir(os.path.join(cwd, 'keywords'))]
         
         # get the output file
         output_file = os.path.join(
