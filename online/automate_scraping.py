@@ -25,22 +25,28 @@ jobs_to_scrape = [
     "data analyst",
     "data scientist",
     "data engineer",
-    "business analyst",
-    "business intelligence",
-    "machine learning",
-    "artificial intelligence",
-    "reporting analyst",
-    "BI analyst",
-    "BI developer",
-    "BI consultant",
-    "BI engineer",
-    "Data and Analytics",
-    "Data and Analytics Consultant"
+    # "business analyst",
+    # "business intelligence",
+    # "machine learning",
+    # "artificial intelligence",
+    # "reporting analyst",
+    # "BI analyst",
+    # "BI developer",
+    # "BI consultant",
+    # "BI engineer",
+    # "Data and Analytics",
+    # "Data and Analytics Consultant"
 ]
 
 # Define the locations
 locations  = [
-    "Australia"
+    "Australia",
+    "Sydney",
+    "Melbourne",
+    "Brisbane",
+    "Perth",
+    "Adelaide",
+    "Canberra",
 ]
 
 # Define a DF to store the results
@@ -92,7 +98,8 @@ for index, row in results.iterrows():
     # calculate the number of batches
     num_batches = jobs_to_scrape // batch_size + 1
     pages_to_scrape = jobs_to_scrape // 20
-    start_page = random.randint(1, pages_to_scrape)
+    start_page = 1
+    # random.randint(1, pages_to_scrape)
     print(f"Scraping {job} in {location} - {jobs_to_scrape} jobs")
     for i in range(num_batches):
         start = i * batch_size
@@ -105,7 +112,7 @@ for index, row in results.iterrows():
                     save_local=False, 
                     save_sql=True, 
                     sql_engine=sql_engine, 
-                    sleep_time=0.2, 
+                    sleep_time=0.01, 
                     start_page=start_page)
         if len(data) == 0:
             print(f"No more data for {job} in {location}")
