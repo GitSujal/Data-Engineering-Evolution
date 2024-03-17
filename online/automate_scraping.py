@@ -98,8 +98,7 @@ for index, row in results.iterrows():
     # calculate the number of batches
     num_batches = jobs_to_scrape // batch_size + 1
     pages_to_scrape = jobs_to_scrape // 20
-    start_page = 1
-    # random.randint(1, pages_to_scrape)
+    start_page = random.randint(1, pages_to_scrape)
     print(f"Scraping {job} in {location} - {jobs_to_scrape} jobs")
     for i in range(num_batches):
         start = i * batch_size
