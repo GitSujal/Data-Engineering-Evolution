@@ -8,16 +8,6 @@ import sqlalchemy
 import yaml
 
 
-config = yaml.safe_load(open('config.yml'))
-# create a new db engine
-server = config['db_credentials']['server']
-database = config['db_credentials']['database']
-user = config['db_credentials']['user']
-password = os.getenv('DP101_PASSWORD')
-
-sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server",
-                                  connect_args={'connect_timeout': 30})
-
 
 def prepare_data(raw_df: pd.DataFrame, keyword_dict_file: list, output_file: str, save_to_csv:bool = False) -> 0:
     """ 
@@ -278,7 +268,7 @@ def job_work_type_processor(jobWorkType_text: str):
             jobWorkType = jobWorkType_text.lower()
     return jobWorkType
 
-def main():
+def process_data(sql_engine: sqlalchemy.engine.base.Engine):
     # get the current working directory
     cwd = os.getcwd()
     # get the raw data file
@@ -314,4 +304,13 @@ def main():
         print('No new data to process')
 
 if __name__ == "__main__":
-    main()
+    config = yaml.safe_load(open('config.yml'))
+    # create a new db engine
+    server = config['db_credentials']['server']
+    database = config['db_credentials']['database']
+    user = config['db_credentials']['user']
+    password = os.getenv('DP101_PASSWORD')
+
+    sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server",
+                                    connect_args={'connect_timeout': 30})
+    process_data(sql_engine= sql_engine)

@@ -5,7 +5,6 @@ import yaml
 import sqlalchemy
 import os
 from seek_scraper import SeekScraper
-from data_preparation import main as data_prep_main
 
 # set up logging
 for handler in logging.root.handlers[:]:
@@ -31,6 +30,7 @@ def scrape_data(job: str, location: str, jobs_to_scrape: int, debug: bool=False,
                 save_local:bool = False,
                 save_sql:bool = False, sql_engine: sqlalchemy.engine.base.Engine = None,
                 sleep_time:float = 0.0,
+                start_page: int = 1
                 ) -> pd.DataFrame:
     """
     scrape data from seek
@@ -44,15 +44,13 @@ def scrape_data(job: str, location: str, jobs_to_scrape: int, debug: bool=False,
                      jobs_to_scrape=jobs_to_scrape, 
                      debug=debug, 
                      sleep_time=sleep_time, 
+                     start_page=start_page,
                      sql_engine=sql_engine)
     logger.info(f'Starting to scrape {jobs_to_scrape} jobs for {job} in {location}')
     data = ss(save_local=save_local, save_sql=save_sql)
     # print success message with job count  job and location
     print(f'Successfully scraped {jobs_to_scrape} jobs for {job} in {location}')
     logger.info(f'Successfully scraped {jobs_to_scrape} jobs for {job} in {location}')
-    
-    # call the data preparation function
-    data_prep_main()
 
     return data
 
@@ -64,12 +62,13 @@ if __name__ == '__main__':
     parser.add_argument('-j','--job', type=str, default='data-analyst', help='Job title to scrape (default: data-analyst)')
     parser.add_argument('-l','--location', type=str, default='perth', help='Location to scrape (default: perth)')
     parser.add_argument('-n','--num_jobs_to_scrape', type=int, default=100, help='Number of jobs to scrape (default: 100)')
+    parser.add_argument('-s','--start_page', type=int, default=1, help='Start page (default: 1)')
     parser.add_argument('--debug', type=bool, default=False, help='Debug mode (default: False)')
     args = parser.parse_args()
 
     # call the scrape data function
     scrape_data(job=args.job, location=args.location, jobs_to_scrape=args.num_jobs_to_scrape,
                 sleep_time=sleep_time,
-                save_local=True, save_sql=True, sql_engine=sql_engine,
+                save_local=True, save_sql=False, sql_engine=None,
                  debug=args.debug)
 

@@ -45,7 +45,8 @@ class SeekScraper:
                     debug:bool = False,
                     sleep_time:float = 0.1,
                     data_folder: str = 'data',
-                    sql_engine = None
+                    sql_engine = None,
+                    start_page: int = 1
                     ):
         if url is None and (job is None or location is None):
             logging.error('Either url or job and location must be provided')
@@ -66,6 +67,7 @@ class SeekScraper:
         self.columns = self.search_attributes +  self.job_attributes + ['jobDescription']
         self.data = pd.DataFrame(columns= self.columns)
         self.data_folder = data_folder
+        self.start_page = start_page
         if not os.path.exists(self.data_folder):
             os.makedirs(self.data_folder)
         self.local_file = f'{self.data_folder}/seek_scraper_raw_data.csv'
@@ -81,7 +83,7 @@ class SeekScraper:
             if response.status_code != 200:
                 raise ValueError(f'Error making request to {url}')
         except ValueError as e:
-            print("{e} skipping and continuing")
+            print(f"{e} skipping and continuing")
             return None
         return response
 
@@ -134,11 +136,13 @@ class SeekScraper:
         result = BeautifulSoup(response.text, 'html.parser')
         # find attribute search result  
         job_description = result.find(attrs={'data-automation':'jobAdDetails'})
+        job_type = result.find(attrs={'data-automation':'job-detail-work-type'})
         job_description = self.default_if_none(job_description)
+        job_type = self.default_if_none(job_type)
         # remove all non-alphanumeric characters
         if job_description is not None:
             job_description = re.sub('\W+',' ', job_description).lower()
-        return job_description
+        return job_description, job_type
     
     def parse_job_attributes(self, response):
         result = BeautifulSoup(response.text, 'html.parser')
@@ -276,8 +280,8 @@ class SeekScraper:
                 return []
     
     def set_batch_size(self, jobs_to_scrape):
-        if jobs_to_scrape > 100:
-            self.batch_size = 100
+        if jobs_to_scrape > 50:
+            self.batch_size = 50
         else:
             self.batch_size = jobs_to_scrape
         if self.debug:
@@ -290,7 +294,7 @@ class SeekScraper:
             print(f'Calling SeekScraper with url: {self.url}')
         available_indexes = self.get_available_indexes()
         job_ids_to_scrape = []
-        page_numnber = 1
+        page_numnber = self.start_page
 
         while self.scrape_count < self.jobs_to_scrape:
             response = self.make_request(f'{self.url}?page={page_numnber}')
@@ -320,7 +324,7 @@ class SeekScraper:
                     if job not in jobs_scraped:
                         response = self.make_request(f'{self.seek_base_url}/job/{str(job)}')
                         if response is not None:
-                            job_description = self.parse_job_description(response)
+                            job_description, job_type = self.parse_job_description(response)
                             job_metadata = self.parse_job_attributes(response)
                             # only keeps the keys that are in the job_attributes list
                             job_metadata = {k: [v] for k, v in job_metadata.items() if k in self.job_attributes}
@@ -332,6 +336,7 @@ class SeekScraper:
                             job_metadata["searchKeywords"] = [self.job]
                             job_metadata["searchLocation"] = [self.location]
                             job_metadata["searchDate"] = [datetime.now()]
+                            job_metadata["jobWorkType"] = [job_type]
                             job_metadata_df = pd.DataFrame.from_dict(job_metadata)
                             # if self.debug:
                             #     print(job_metadata_df)
