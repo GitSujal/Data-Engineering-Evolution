@@ -121,7 +121,7 @@ for index, row in results.iterrows():
     print("Starting the data preparation job")
     process_data(sql_engine)
     print("Waiting for 30 seconds before starting the next job")
-    # time.sleep(30)
+    time.sleep(5)
 
 print("All jobs are finished")
         
