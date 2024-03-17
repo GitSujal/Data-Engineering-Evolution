@@ -47,6 +47,11 @@ locations  = [
 results = pd.DataFrame(columns=["job", "location", "jobsCount", "scrapeDate", "pk_hash"])
 
 # Find the total jobs avaialble for each job title
+# shuffle the jobs and locations
+import random
+
+jobs_to_scrape = random.sample(jobs_to_scrape, len(jobs_to_scrape))
+locations = random.sample(locations, len(locations))
 
 for job in jobs_to_scrape:
     for location in locations:
@@ -86,12 +91,13 @@ for index, row in results.iterrows():
     batch_size = 200
     # calculate the number of batches
     num_batches = jobs_to_scrape // batch_size + 1
-    start_page = 1
+    pages_to_scrape = jobs_to_scrape // 20
+    start_page = random.randint(1, pages_to_scrape)
     print(f"Scraping {job} in {location} - {jobs_to_scrape} jobs")
     for i in range(num_batches):
         start = i * batch_size
         end = (i + 1) * batch_size
-        start_page = i*10 + 1  
+        start_page = start_page + i*10
         print(f"Batch {i+1} - Start: {start} End: {end} Start Page: {start_page}")
         data = scrape_data(job=job, 
                     location=location, 
@@ -109,7 +115,7 @@ for index, row in results.iterrows():
     print("Starting the data preparation job")
     process_data(sql_engine)
     print("Waiting for 30 seconds before starting the next job")
-    time.sleep(30)
+    # time.sleep(30)
 
 print("All jobs are finished")
         
