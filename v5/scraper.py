@@ -79,19 +79,19 @@ if __name__=="__main__":
     sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server",
                                     connect_args={'connect_timeout': 30})
 
-    # all_trends_df = get_trends_all(jobs_to_scrape, locations)
-    # if all_trends_df.shape[0] > 0:
-    #     write_trends_to_db(all_trends_df, "jobs_trends", sql_engine)
-    #     print("Trends data written to the database")
-    # else:
-    #     print("No trends data to write to the database")
+    all_trends_df = get_trends_all(jobs_to_scrape, locations)
+    if all_trends_df.shape[0] > 0:
+        write_trends_to_db(all_trends_df, "jobs_trends", sql_engine)
+        print("Trends data written to the database")
+    else:
+        print("No trends data to write to the database")
     
-    # all_jobs_df = get_jobs_all(jobs_to_scrape, locations)
-    # if all_jobs_df.shape[0] > 0:
-    #     write_jobs_to_db(all_jobs_df, "jobs", sql_engine)
-    #     print("Jobs data written to the database")
-    # else:
-    #     print("No jobs data to write to the database")
+    all_jobs_df = get_jobs_all(jobs_to_scrape, locations)
+    if all_jobs_df.shape[0] > 0:
+        write_jobs_to_db(all_jobs_df, "jobs", sql_engine)
+        print("Jobs data written to the database")
+    else:
+        print("No jobs data to write to the database")
     print("Processing the data....")
     process_data(sql_engine)
     print("Data processing complete")
