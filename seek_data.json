@@ -1,0 +1,1874 @@
+{
+    "data": [
+        {
+            "advertiser": {
+                "id": "37928211",
+                "description": "Forefront Events"
+            },
+            "area": "CBD, Inner West & Eastern Suburbs",
+            "areaId": 5027,
+            "areaWhereValue": "Sydney CBD, Inner West & Eastern Suburbs Sydney NSW",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "e8313684-d448-4753-99fc-ac5d61b8cbdc.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/e8313684-d448-4753-99fc-ac5d61b8cbdc.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/e8313684-d448-4753-99fc-ac5d61b8cbdc.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Join diverse workplace, valuing all, promoting equality & belonging",
+                "Hybrid work arrangements offer flexibility by combining remote & in-office work",
+                "Employee Recognition and Awards"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Forefront Events",
+            "companyProfileStructuredDataId": 565606,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "promoted",
+            "listingDateDisplay": "2d ago",
+            "location": "Sydney",
+            "locationId": 1000,
+            "locationWhereValue": "All Sydney NSW",
+            "id": 74481971,
+            "isPremium": true,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Sydney NSW",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Sydney NSW"
+                    },
+                    {
+                        "contextualName": "New South Wales NSW"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-15T06:00:50Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "business-analyst",
+            "salary": "$60,000 - $69,999",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74481971",
+                "section": "MAIN",
+                "sectionRank": 23,
+                "jobAdType": "SPONSORED",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Sydney",
+            "suburbId": 16351,
+            "suburbWhereValue": "Sydney NSW 2000",
+            "teaser": "Looking for a Junior Business Analyst to help grow Forefront Events into a data-centric organisation",
+            "title": "Junior Business Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMSIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "45593380",
+                "description": "Mitani Products"
+            },
+            "automaticInclusion": false,
+            "branding": {
+                "id": "d9986b49-f0f1-bae6-c4d7-b9dd6912ac23.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/d9986b49-f0f1-bae6-c4d7-b9dd6912ac23.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/d9986b49-f0f1-bae6-c4d7-b9dd6912ac23.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Family Business, Australian owned and operated.",
+                "Great collaborative team environment",
+                "Fulltime role"
+            ],
+            "classification": {
+                "id": "6092",
+                "description": "Manufacturing, Transport & Logistics"
+            },
+            "companyName": "Mitani Products",
+            "companyProfileStructuredDataId": 452199,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "promoted",
+            "listingDateDisplay": "4d ago",
+            "location": "Adelaide",
+            "locationId": 1007,
+            "locationWhereValue": "All Adelaide SA",
+            "id": 74431920,
+            "isPremium": true,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Salisbury Plain, Adelaide SA",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Salisbury Plain SA 5109"
+                    },
+                    {
+                        "contextualName": "All Adelaide SA"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T10:53:00Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "business-data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74431920",
+                "section": "MAIN",
+                "sectionRank": 24,
+                "jobAdType": "SPONSORED",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6095",
+                "description": "Analysis & Reporting"
+            },
+            "suburb": "Salisbury Plain",
+            "suburbId": 12631,
+            "suburbWhereValue": "Salisbury Plain SA 5109",
+            "teaser": "Feed your competitive data advantage by joining our team of inspirational and dedicated team members.",
+            "title": "Business Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMiIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "61848421",
+                "description": "Goldwind Australia"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5069,
+            "areaWhereValue": "Melbourne CBD & Inner Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "e8bd3230-2397-4429-bdc3-885f4cba24f6.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/e8bd3230-2397-4429-bdc3-885f4cba24f6.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/e8bd3230-2397-4429-bdc3-885f4cba24f6.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Opportunity to join a global leader in wind energy!",
+                "Training and development provided.",
+                "Melbourne CBD Location"
+            ],
+            "classification": {
+                "id": "6058",
+                "description": "Mining, Resources & Energy"
+            },
+            "companyProfileStructuredDataId": 0,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "1d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74134726,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    },
+                    {
+                        "contextualName": "Victoria VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-16T23:01:26Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74134726",
+                "section": "MAIN",
+                "sectionRank": 25,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6059",
+                "description": "Analysis & Reporting"
+            },
+            "suburb": "Melbourne",
+            "suburbId": 18578,
+            "suburbWhereValue": "Melbourne VIC 3000",
+            "teaser": "Excellent opportunity to join the global leader in wind energy. This role sits within our RCC team, based at our offices on La Trobe St, Melbourne.",
+            "title": "RCC Operations Data Analyst - Wind Energy",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMyIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "41306130",
+                "description": "Hudson - Data & Analytics"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5010,
+            "areaWhereValue": "Brisbane CBD & Inner Suburbs Brisbane QLD",
+            "automaticInclusion": false,
+            "bulletPoints": [],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Hudson",
+            "companyProfileStructuredDataId": 492,
+            "displayType": "standard",
+            "listingDateDisplay": "5d ago",
+            "location": "Brisbane",
+            "locationId": 1004,
+            "locationWhereValue": "All Brisbane QLD",
+            "id": 74389484,
+            "isPremium": false,
+            "isStandOut": false,
+            "jobLocation": {
+                "label": "Brisbane QLD",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Brisbane QLD"
+                    },
+                    {
+                        "contextualName": "Queensland QLD"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-12T06:24:27Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "$100 - $113 p.h. + Inc. Super",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74389484",
+                "section": "MAIN",
+                "sectionRank": 26,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6286",
+                "description": "Database Development & Administration"
+            },
+            "suburb": "Brisbane",
+            "suburbId": 18110,
+            "suburbWhereValue": "Brisbane QLD 4000",
+            "teaser": "$113.02/hour Inc. super | Brisbane CBD with 2-3 WFH  | 25/03/2024 - 30/06/2024 + Possible Extension",
+            "title": "Data Analyst - ICT",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfNCIKfQ==",
+            "workType": "Contract/Temp",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "37928211",
+                "description": "Forefront Events"
+            },
+            "area": "CBD, Inner West & Eastern Suburbs",
+            "areaId": 5027,
+            "areaWhereValue": "Sydney CBD, Inner West & Eastern Suburbs Sydney NSW",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "e8313684-d448-4753-99fc-ac5d61b8cbdc.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/e8313684-d448-4753-99fc-ac5d61b8cbdc.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/e8313684-d448-4753-99fc-ac5d61b8cbdc.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Join diverse workplace, valuing all, promoting equality & belonging",
+                "Hybrid work arrangements offer flexibility by combining remote & in-office work",
+                "Employee Recognition and Awards"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Forefront Events",
+            "companyProfileStructuredDataId": 565606,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "2d ago",
+            "location": "Sydney",
+            "locationId": 1000,
+            "locationWhereValue": "All Sydney NSW",
+            "id": 74481971,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Sydney NSW",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Sydney NSW"
+                    },
+                    {
+                        "contextualName": "New South Wales NSW"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-15T06:00:50Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "business-analyst",
+            "salary": "$60,000 - $69,999",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74481971",
+                "section": "MAIN",
+                "sectionRank": 27,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Sydney",
+            "suburbId": 16351,
+            "suburbWhereValue": "Sydney NSW 2000",
+            "teaser": "Looking for a Junior Business Analyst to help grow Forefront Events into a data-centric organisation",
+            "title": "Junior Business Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfNSIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "23607501",
+                "description": "Talent \u2013 Specialists in tech, transformation & beyond"
+            },
+            "area": "CBD, Inner West & Eastern Suburbs",
+            "areaId": 5027,
+            "areaWhereValue": "Sydney CBD, Inner West & Eastern Suburbs Sydney NSW",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "9a0883b4-4608-6853-3207-f0f554168e73.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/9a0883b4-4608-6853-3207-f0f554168e73.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/9a0883b4-4608-6853-3207-f0f554168e73.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Opportunity to upskill in SAP, BW, Google Cloud and emerging technologies",
+                "Friendly dynamic technology team to support and help you build the data practice",
+                "Flexible hybrid WFH and in office 2-3 days per week, excellent benefits"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Talent International",
+            "companyProfileStructuredDataId": 22548,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "2d ago",
+            "location": "Sydney",
+            "locationId": 1000,
+            "locationWhereValue": "All Sydney NSW",
+            "id": 74485631,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Sydney NSW",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Sydney NSW"
+                    },
+                    {
+                        "contextualName": "New South Wales NSW"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-15T06:32:59Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "development-analyst",
+            "salary": "Package + 10% Bonus + Benefits",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74485631",
+                "section": "MAIN",
+                "sectionRank": 28,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6286",
+                "description": "Database Development & Administration"
+            },
+            "suburb": "Sydney",
+            "suburbId": 16351,
+            "suburbWhereValue": "Sydney NSW 2000",
+            "teaser": "Newly created role for a dynamic Data Developer/Analyst with 1-3 years experience producing meaningful business analytical reports and insights.",
+            "title": "Data Developer/Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfNiIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "37627415",
+                "description": "Healthscope"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5069,
+            "areaWhereValue": "Melbourne CBD & Inner Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "bulletPoints": [],
+            "classification": {
+                "id": "6076",
+                "description": "Consulting & Strategy"
+            },
+            "companyName": "Healthscope",
+            "companyProfileStructuredDataId": 4885,
+            "displayType": "standard",
+            "listingDateDisplay": "3d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74446392,
+            "isPremium": false,
+            "isStandOut": false,
+            "jobLocation": {
+                "label": "Southbank, Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Southbank VIC 3006"
+                    },
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-14T01:09:04Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-scientist",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74446392",
+                "section": "MAIN",
+                "sectionRank": 29,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6077",
+                "description": "Analysts"
+            },
+            "suburb": "Southbank",
+            "suburbId": 15938,
+            "suburbWhereValue": "Southbank VIC 3006",
+            "teaser": "We are looking for a diligent, collaborative, and solutions-driven graduate Data Analyst to join our team in a permanent full time role.",
+            "title": "Graduate Data Scientist",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfNyIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "55148930",
+                "description": "Bloom Personnel"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5069,
+            "areaWhereValue": "Melbourne CBD & Inner Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "66b938e3-b802-4a08-a483-cb93c5e42d03.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/66b938e3-b802-4a08-a483-cb93c5e42d03.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/66b938e3-b802-4a08-a483-cb93c5e42d03.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Fantastic Career Growth and Advancement Opportunities.",
+                "Collaborative and Cross-Functional Environment.",
+                "Great Work Life Balance. (Hybrid Working Options Available for Interstate)"
+            ],
+            "classification": {
+                "id": "1210",
+                "description": "Government & Defence"
+            },
+            "companyName": "Bloom Personnel",
+            "companyProfileStructuredDataId": 560141,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "4d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74417443,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    },
+                    {
+                        "contextualName": "Victoria VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T05:09:11Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74417443",
+                "section": "MAIN",
+                "sectionRank": 30,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6361",
+                "description": "Other"
+            },
+            "suburb": "Melbourne",
+            "suburbId": 18578,
+            "suburbWhereValue": "Melbourne VIC 3000",
+            "teaser": "We are seeking a highly skilled Data Analyst to join our dynamic team in the defence sector. Interstate candidates are encouraged to apply!",
+            "title": "Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfOCIKfQ==",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "23607483",
+                "description": "Talent \u2013 Specialists in tech, transformation & beyond"
+            },
+            "automaticInclusion": false,
+            "branding": {
+                "id": "b1bd239b-debd-7fb4-91e0-8bf1f9146fa7.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/b1bd239b-debd-7fb4-91e0-8bf1f9146fa7.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/b1bd239b-debd-7fb4-91e0-8bf1f9146fa7.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Multiple contract roles",
+                "Adelaide Based"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Talent International",
+            "companyProfileStructuredDataId": 22548,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "5d ago",
+            "location": "Adelaide",
+            "locationId": 1007,
+            "locationWhereValue": "All Adelaide SA",
+            "id": 74388440,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Adelaide SA",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Adelaide SA"
+                    },
+                    {
+                        "contextualName": "South Australia SA"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-12T06:09:40Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "Contract",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74388440",
+                "section": "MAIN",
+                "sectionRank": 31,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Adelaide",
+            "suburbId": 11065,
+            "suburbWhereValue": "Adelaide SA 5000",
+            "teaser": "One of our client based in Adelaide is looking to hire candidates with experience in ITSM for Admin Data Analyst and Business Analyst (ITSM)",
+            "title": "ITSM Admin & Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfOSIKfQ==",
+            "workType": "Contract/Temp",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "45561455",
+                "description": "Randstad Digital"
+            },
+            "area": "CBD, Inner & Western Suburbs",
+            "areaId": 5048,
+            "areaWhereValue": "Perth CBD, Inner & Western Suburbs Perth WA",
+            "automaticInclusion": false,
+            "bulletPoints": [],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Randstad",
+            "companyProfileStructuredDataId": 1275,
+            "displayType": "standard",
+            "listingDateDisplay": "5d ago",
+            "location": "Perth",
+            "locationId": 1009,
+            "locationWhereValue": "All Perth WA",
+            "id": 74391936,
+            "isPremium": false,
+            "isStandOut": false,
+            "jobLocation": {
+                "label": "Perth WA",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Perth WA"
+                    },
+                    {
+                        "contextualName": "Western Australia WA"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-12T07:46:58Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74391936",
+                "section": "MAIN",
+                "sectionRank": 32,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Perth",
+            "suburbId": 11705,
+            "suburbWhereValue": "Perth WA 6000",
+            "teaser": "We have a current opportunity for a Data Analyst on a contract basis. The position will be based in West Perth.",
+            "title": "Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTAiCn0=",
+            "workType": "Contract/Temp",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "21497083",
+                "description": "Fleetcare"
+            },
+            "area": "Northern Suburbs & Joondalup",
+            "areaId": 5051,
+            "areaWhereValue": "Northern Suburbs & Joondalup Perth WA",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "1f767910-d6ef-dbfe-a0d1-140682c17064.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/1f767910-d6ef-dbfe-a0d1-140682c17064.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/1f767910-d6ef-dbfe-a0d1-140682c17064.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Join a team that values innovation and data-driven decision-making",
+                "Harness the power of data to drive strategic decisions across our business",
+                "Pioneer data-driven strategies to optimise operational efficiency"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Fleetcare",
+            "companyProfileStructuredDataId": 18108,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "4d ago",
+            "location": "Perth",
+            "locationId": 1009,
+            "locationWhereValue": "All Perth WA",
+            "id": 74426474,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Wangara, Perth WA",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Wangara WA 6065"
+                    },
+                    {
+                        "contextualName": "All Perth WA"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T08:19:55Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74426474",
+                "section": "MAIN",
+                "sectionRank": 33,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Wangara",
+            "suburbId": 21785,
+            "suburbWhereValue": "Wangara WA 6065",
+            "teaser": "Based at our Head Office in Wangara, you will receive Excellent Benefits, work in our Amazing Office Facilities, and achieve a Work/Life Balance!",
+            "title": "Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTEiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "32035972",
+                "description": "Capital Recruit"
+            },
+            "automaticInclusion": false,
+            "branding": {
+                "id": "8a1f1c28-1551-2edc-3fdd-5698b811ff05.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/8a1f1c28-1551-2edc-3fdd-5698b811ff05.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/8a1f1c28-1551-2edc-3fdd-5698b811ff05.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "12 month hourly rate contract",
+                "Central Location",
+                "Utilise your technical and analytical skills"
+            ],
+            "classification": {
+                "id": "1210",
+                "description": "Government & Defence"
+            },
+            "companyName": "Capital Recruit",
+            "companyProfileStructuredDataId": 346855,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "4d ago",
+            "location": "Canberra",
+            "locationId": 1015,
+            "locationWhereValue": "All Canberra ACT",
+            "id": 74441270,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Canberra ACT",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Canberra ACT"
+                    },
+                    {
+                        "contextualName": "Australian Capital Territory ACT"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T21:48:30Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74441270",
+                "section": "MAIN",
+                "sectionRank": 34,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "1409",
+                "description": "Government - Federal"
+            },
+            "suburb": "Canberra",
+            "suburbId": 22487,
+            "suburbWhereValue": "Canberra ACT 2600",
+            "teaser": "Play a critical role by leveraging data to inform decision making, drive insights and support the achievement of the organisational objectives",
+            "title": "APS5 Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTIiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "45356027",
+                "description": "bcu a division of Police and Nurses Limited"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5010,
+            "areaWhereValue": "Brisbane CBD & Inner Suburbs Brisbane QLD",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "563ca4d7-af18-453d-8875-37a25cc9836b.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/563ca4d7-af18-453d-8875-37a25cc9836b.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/563ca4d7-af18-453d-8875-37a25cc9836b.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Collaborative and innovative culture within a customer-centric organisation",
+                "Great team environment",
+                "Full-time, 9-month contract"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "BCU Bank",
+            "companyProfileStructuredDataId": 12131,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "6d ago",
+            "location": "Brisbane",
+            "locationId": 1004,
+            "locationWhereValue": "All Brisbane QLD",
+            "id": 74358968,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Brisbane QLD",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Brisbane QLD"
+                    },
+                    {
+                        "contextualName": "Queensland QLD"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-11T04:56:09Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74358968",
+                "section": "MAIN",
+                "sectionRank": 35,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6286",
+                "description": "Database Development & Administration"
+            },
+            "suburb": "Brisbane",
+            "suburbId": 18110,
+            "suburbWhereValue": "Brisbane QLD 4000",
+            "teaser": "P&N Group are seeking an experienced Data Analyst to join our Data Analytics & Insights team on a full time, 9 month contract basis",
+            "title": "Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTMiCn0=",
+            "workType": "Contract/Temp",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "",
+                "description": "Private Advertiser"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5069,
+            "areaWhereValue": "Melbourne CBD & Inner Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "bulletPoints": [],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyProfileStructuredDataId": 0,
+            "displayType": "standard",
+            "listingDateDisplay": "3d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74454778,
+            "isPremium": false,
+            "isStandOut": false,
+            "jobLocation": {
+                "label": "Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    },
+                    {
+                        "contextualName": "Victoria VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-14T05:26:59Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74454778",
+                "section": "MAIN",
+                "sectionRank": 36,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Melbourne",
+            "suburbId": 18578,
+            "suburbWhereValue": "Melbourne VIC 3000",
+            "teaser": "Great opportunities to join the market-leading provider of geo-spatial IT service Company in the role of GIS Data Analysts. WFH anywhere in Australia!",
+            "title": "GIS Data Analyst \u2013 Smallworld",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTQiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": true
+        },
+        {
+            "advertiser": {
+                "id": "22012204",
+                "description": "DV Connect Ltd"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5010,
+            "areaWhereValue": "Brisbane CBD & Inner Suburbs Brisbane QLD",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "9693333e-a5aa-88f0-c914-b516721e62fd.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/9693333e-a5aa-88f0-c914-b516721e62fd.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/9693333e-a5aa-88f0-c914-b516721e62fd.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Full-time Contract",
+                "Data and Reporting Analyst",
+                "Not-for-profit Organisation"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "DV Connect",
+            "companyProfileStructuredDataId": 363391,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "4d ago",
+            "location": "Brisbane",
+            "locationId": 1004,
+            "locationWhereValue": "All Brisbane QLD",
+            "id": 74419239,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Brisbane QLD",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Brisbane QLD"
+                    },
+                    {
+                        "contextualName": "Queensland QLD"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T05:52:50Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "workforce-planning",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74419239",
+                "section": "MAIN",
+                "sectionRank": 37,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Brisbane",
+            "suburbId": 18110,
+            "suburbWhereValue": "Brisbane QLD 4000",
+            "teaser": "Full-Time Contract (9 months) Central Brisbane Office\u00a0 \u00a0 DVConnect is a leading provider of evidence-based and trauma-informed services for people",
+            "title": "Workforce Planning Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTUiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "45593380",
+                "description": "Mitani Products"
+            },
+            "automaticInclusion": false,
+            "branding": {
+                "id": "d9986b49-f0f1-bae6-c4d7-b9dd6912ac23.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/d9986b49-f0f1-bae6-c4d7-b9dd6912ac23.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/d9986b49-f0f1-bae6-c4d7-b9dd6912ac23.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Family Business, Australian owned and operated.",
+                "Great collaborative team environment",
+                "Fulltime role"
+            ],
+            "classification": {
+                "id": "6092",
+                "description": "Manufacturing, Transport & Logistics"
+            },
+            "companyName": "Mitani Products",
+            "companyProfileStructuredDataId": 452199,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "4d ago",
+            "location": "Adelaide",
+            "locationId": 1007,
+            "locationWhereValue": "All Adelaide SA",
+            "id": 74431920,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Salisbury Plain, Adelaide SA",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Salisbury Plain SA 5109"
+                    },
+                    {
+                        "contextualName": "All Adelaide SA"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T10:53:00Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "business-data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74431920",
+                "section": "MAIN",
+                "sectionRank": 38,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6095",
+                "description": "Analysis & Reporting"
+            },
+            "suburb": "Salisbury Plain",
+            "suburbId": 12631,
+            "suburbWhereValue": "Salisbury Plain SA 5109",
+            "teaser": "Feed your competitive data advantage by joining our team of inspirational and dedicated team members.",
+            "title": "Business Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTYiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "26475017",
+                "description": "FourQuarters Recruitment"
+            },
+            "area": "CBD, Inner West & Eastern Suburbs",
+            "areaId": 5027,
+            "areaWhereValue": "Sydney CBD, Inner West & Eastern Suburbs Sydney NSW",
+            "automaticInclusion": false,
+            "bulletPoints": [],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "FourQuarters Recruitment",
+            "companyProfileStructuredDataId": 334534,
+            "displayType": "standard",
+            "listingDateDisplay": "4d ago",
+            "location": "Sydney",
+            "locationId": 1000,
+            "locationWhereValue": "All Sydney NSW",
+            "id": 74441028,
+            "isPremium": false,
+            "isStandOut": false,
+            "jobLocation": {
+                "label": "Sydney NSW",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Sydney NSW"
+                    },
+                    {
+                        "contextualName": "New South Wales NSW"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T21:31:18Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74441028",
+                "section": "MAIN",
+                "sectionRank": 39,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Sydney",
+            "suburbId": 16351,
+            "suburbWhereValue": "Sydney NSW 2000",
+            "teaser": "Exciting opportunity for a senior Data Analyst to be part of a data transformation project - long term contract role in Sydney!",
+            "title": "Senior Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTciCn0=",
+            "workType": "Contract/Temp",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "37655017",
+                "description": "MLC Life Insurance"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5069,
+            "areaWhereValue": "Melbourne CBD & Inner Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "abbc5f14-bf73-3431-a56d-8b05f1368ca8.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/abbc5f14-bf73-3431-a56d-8b05f1368ca8.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/abbc5f14-bf73-3431-a56d-8b05f1368ca8.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Newly created role in our Transformation business unit",
+                "Keen and genuine interest in process analysis and modelling",
+                "Strong technical skills set as a Data Analyst"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "MLC Life Insurance",
+            "companyProfileStructuredDataId": 346118,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "5d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74404694,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    },
+                    {
+                        "contextualName": "Victoria VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-12T22:54:31Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74404694",
+                "section": "MAIN",
+                "sectionRank": 40,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Melbourne",
+            "suburbId": 18578,
+            "suburbWhereValue": "Melbourne VIC 3000",
+            "teaser": "As we have condensed our value streams to better align to our enterprise strategy, the Transformation business have created a number of new roles.",
+            "title": "Process Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTgiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "23607543",
+                "description": "Talent \u2013 Specialists in tech, transformation & beyond"
+            },
+            "area": "Bayside & South Eastern Suburbs",
+            "areaId": 5070,
+            "areaWhereValue": "Bayside & South Eastern Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "731caf0a-e646-aa6a-dc9d-e10f4b48015a.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/731caf0a-e646-aa6a-dc9d-e10f4b48015a.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/731caf0a-e646-aa6a-dc9d-e10f4b48015a.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Hybrid work arrangement with flexible work hours.",
+                "Supportive company culture from the top down.",
+                "Work for a leading company in their industry,"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Talent International",
+            "companyProfileStructuredDataId": 22548,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "3d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74454992,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Moorabbin, Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Moorabbin VIC 3189"
+                    },
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-14T05:33:48Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "$130k - $140k p.a.",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74454992",
+                "section": "MAIN",
+                "sectionRank": 41,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6286",
+                "description": "Database Development & Administration"
+            },
+            "suburb": "Moorabbin",
+            "suburbId": 19061,
+            "suburbWhereValue": "Moorabbin VIC 3189",
+            "teaser": "Seeking a Senior Data Analyst with 5+ yrs experience in data warehousing and analytics for a dynamic role with competitive benefits. Apply now!",
+            "title": "Senior Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMTkiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "27095639",
+                "description": "McGibbon Consulting"
+            },
+            "area": "CBD & Inner Suburbs",
+            "areaId": 5010,
+            "areaWhereValue": "Brisbane CBD & Inner Suburbs Brisbane QLD",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "0faa5d53-0c0e-46bd-a6ad-b820de0609f8.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/0faa5d53-0c0e-46bd-a6ad-b820de0609f8.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/0faa5d53-0c0e-46bd-a6ad-b820de0609f8.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Data enhancement focus",
+                "Drive quality of reporting",
+                "Large complex oganisation"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "McGibbon Consulting",
+            "companyProfileStructuredDataId": 350731,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "4d ago",
+            "location": "Brisbane",
+            "locationId": 1004,
+            "locationWhereValue": "All Brisbane QLD",
+            "id": 74423411,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Kedron, Brisbane QLD",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Kedron QLD 4031"
+                    },
+                    {
+                        "contextualName": "All Brisbane QLD"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-13T06:57:41Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-reporting-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74423411",
+                "section": "MAIN",
+                "sectionRank": 42,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Kedron",
+            "suburbId": 12958,
+            "suburbWhereValue": "Kedron QLD 4031",
+            "teaser": "data and reporting, analyst, complex env, PowerBi, Excel, automotive industry, create and develop reports",
+            "title": "Data & Reporting Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMjAiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "29393920",
+                "description": "Campbell Transport"
+            },
+            "area": "CBD, Inner & Western Suburbs",
+            "areaId": 5048,
+            "areaWhereValue": "Perth CBD, Inner & Western Suburbs Perth WA",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "d1708a1c-310d-deb8-9465-8ca762f7eb3c.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/d1708a1c-310d-deb8-9465-8ca762f7eb3c.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/d1708a1c-310d-deb8-9465-8ca762f7eb3c.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Rapidly growing with a strong team and excellent knowledge behind them",
+                "Supportive & open-door management who promote growth within the business",
+                "Full Time - Permanent position"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Campbell Transport",
+            "companyProfileStructuredDataId": 347582,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "9d ago",
+            "location": "Perth",
+            "locationId": 1009,
+            "locationWhereValue": "All Perth WA",
+            "id": 74311590,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Perth WA",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "All Perth WA"
+                    },
+                    {
+                        "contextualName": "Western Australia WA"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-08T02:41:34Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74311590",
+                "section": "MAIN",
+                "sectionRank": 43,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Perth",
+            "suburbId": 11705,
+            "suburbWhereValue": "Perth WA 6000",
+            "teaser": "This is an excellent opportunity to join a growing friendly and professional WA business and develop your analytical skills",
+            "title": "Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMjEiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        },
+        {
+            "advertiser": {
+                "id": "3675975",
+                "description": "Country Fire Authority (CFA)"
+            },
+            "area": "Eastern Suburbs",
+            "areaId": 5071,
+            "areaWhereValue": "Eastern Suburbs Melbourne VIC",
+            "automaticInclusion": false,
+            "branding": {
+                "id": "6a5d16f2-a224-5442-2899-20aa9a430b52.1",
+                "assets": {
+                    "logo": {
+                        "strategies": {
+                            "jdpLogo": "https://bx-branding-gateway.cloud.seek.com.au/6a5d16f2-a224-5442-2899-20aa9a430b52.1/jdpLogo",
+                            "serpLogo": "https://bx-branding-gateway.cloud.seek.com.au/6a5d16f2-a224-5442-2899-20aa9a430b52.1/serpLogo"
+                        }
+                    }
+                }
+            },
+            "bulletPoints": [
+                "Located at CFA Headquarters, Burwood East",
+                "Full time, Ongoing",
+                "PTA 4 $89,586 pa (plus 11% superannuation)"
+            ],
+            "classification": {
+                "id": "6281",
+                "description": "Information & Communication Technology"
+            },
+            "companyName": "Country Fire Authority (CFA)",
+            "companyProfileStructuredDataId": 4298,
+            "displayStyle": {
+                "search": "A"
+            },
+            "displayType": "standout",
+            "listingDateDisplay": "5d ago",
+            "location": "Melbourne",
+            "locationId": 1002,
+            "locationWhereValue": "All Melbourne VIC",
+            "id": 74405657,
+            "isPremium": false,
+            "isStandOut": true,
+            "jobLocation": {
+                "label": "Burwood, Melbourne VIC",
+                "countryCode": "AU",
+                "seoHierarchy": [
+                    {
+                        "contextualName": "Burwood VIC 3125"
+                    },
+                    {
+                        "contextualName": "All Melbourne VIC"
+                    }
+                ]
+            },
+            "listingDate": "2024-03-12T23:49:37Z",
+            "logo": {
+                "id": "",
+                "description": null
+            },
+            "roleId": "data-analyst",
+            "salary": "",
+            "solMetadata": {
+                "searchRequestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+                "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+                "jobId": "74405657",
+                "section": "MAIN",
+                "sectionRank": 44,
+                "jobAdType": "ORGANIC",
+                "tags": {
+                    "mordor__flights": "mordor_412",
+                    "mordor__s": "2"
+                }
+            },
+            "subClassification": {
+                "id": "6283",
+                "description": "Business/Systems Analysts"
+            },
+            "suburb": "Burwood",
+            "suburbId": 22303,
+            "suburbWhereValue": "Burwood VIC 3125",
+            "teaser": "Data Analyst join CFA today. Transform data into into actionable insights. A critical role in safeguarding Victorian communities from fire. Apply now",
+            "title": "Data Analyst",
+            "tracking": "ewogICJ0b2tlbiI6ICJiZWZiOGRkNy01ZThiLTQ0OTktOWYxMy1iM2JkN2ExYWRkZmNfMjIiCn0=",
+            "workType": "Full time",
+            "isPrivateAdvertiser": false
+        }
+    ],
+    "title": "Data Analyst Jobs in All Australia",
+    "totalCount": 9387,
+    "totalPages": 427,
+    "paginationParameters": {
+        "seekSelectAllPages": true,
+        "hadPremiumListings": true
+    },
+    "info": {
+        "timeTaken": 57,
+        "source": "JobSearch-sm",
+        "experiment": "mordor_412"
+    },
+    "userQueryId": "API4423205748409590122",
+    "sortMode": [
+        {
+            "isActive": true,
+            "name": "Relevance",
+            "value": "KeywordRelevance"
+        },
+        {
+            "isActive": false,
+            "name": "Date",
+            "value": "ListedDate"
+        }
+    ],
+    "solMetadata": {
+        "requestToken": "135445c0-96b3-476a-9c97-8bae85b50962",
+        "token": "0~135445c0-96b3-476a-9c97-8bae85b50962",
+        "keywords": "Data Analyst",
+        "sortMode": "RELEVANCE",
+        "locations": [
+            "Australia",
+            "seek-3000"
+        ],
+        "locationDistance": 50,
+        "pageSize": 22,
+        "pageNumber": 2,
+        "totalJobCount": 9387,
+        "tags": {
+            "mordor:searchMarket": "UNIFIED_AU",
+            "mordor:rt": "49",
+            "mordor:fusionParamSweep": "OUTK167",
+            "mordor__flights": "mordor_412",
+            "mordor__rbo_perfMng_p95_k20": "1.000",
+            "chalice-search-api:solId": "f46b87ad-b629-4429-b1a6-1372cb460fcd"
+        }
+    },
+    "location": {
+        "areaDescription": "",
+        "areaId": 0,
+        "description": "All Australia",
+        "locationDescription": "",
+        "locationId": 3000,
+        "matched": true,
+        "stateDescription": "",
+        "suburbParentDescription": "",
+        "type": "Country",
+        "whereId": 3000,
+        "descriptions": {
+            "en": {
+                "contextualName": "All Australia"
+            },
+            "id": {
+                "contextualName": "Australia"
+            },
+            "th": {
+                "contextualName": "\u0e2d\u0e2d\u0e2a\u0e40\u0e15\u0e23\u0e40\u0e25\u0e35\u0e22"
+            }
+        }
+    },
+    "joraCrossLink": {
+        "canCrossLink": false
+    },
+    "searchParams": {
+        "sitekey": "AU-Main",
+        "sourcesystem": "houston",
+        "where": "Australia",
+        "page": "2",
+        "seekselectallpages": "True",
+        "keywords": "Data Analyst",
+        "locale": "en-AU",
+        "solid": "f46b87ad-b629-4429-b1a6-1372cb460fcd"
+    }
+}

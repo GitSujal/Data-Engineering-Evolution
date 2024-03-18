@@ -1,0 +1,17 @@
+{   
+    "degree": "Higher Degree",
+    "bachelor": "Higher Degree",
+    "master": "Higher Degree",
+    "doctor": "Higher Degree",
+    "undergrad": "Higher Degree",
+    "phd": "Higher Degree",
+    "postgrad": "Higher Degree",
+    "postgraduate": "Higher Degree",
+    "diploma": "Certificate",
+    "cert": "Certificate",
+    "certificate": "Certificate",
+    "certification": "Certificate",
+    "graduate": "Higher Degree",
+    "undergraduate": "Higher Degree",
+    "tertiary": "Higher Degree"
+}

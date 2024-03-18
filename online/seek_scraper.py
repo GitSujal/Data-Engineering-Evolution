@@ -79,7 +79,9 @@ class SeekScraper:
         if self.debug:
             print(f'Making request to {url}')
         try: 
-            response = requests.get(url)
+            response = requests.get(url,
+                                    headers={'User-Agent': 'Mozilla/5.0'}
+                                    )
             if response.status_code != 200:
                 raise ValueError(f'Error making request to {url}')
         except ValueError as e:
