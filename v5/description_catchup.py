@@ -3,6 +3,13 @@ import sqlalchemy
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
+import logging
+
+# set up a log file
+logging.basicConfig(filename='scraper.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+
+logging.info("Starting the description catcheere....")
+
 # create a new db engine
 server = 'dp101server.database.windows.net'
 database = 'dp101database'
@@ -18,6 +25,7 @@ def catch_up_descriptions(sql_engine):
     sql = """select jobid from jobs where jobid not in (select jobid from jobs_descriptions);"""
 
     job_ids = pd.read_sql(sql, sql_engine)
+    logging.info(f"Found {job_ids.shape[0]} jobs without description")
 
     if job_ids.shape[0] > 200:
         job_ids = job_ids.sample(200)['jobid'].to_list()
@@ -42,6 +50,7 @@ def catch_up_descriptions(sql_engine):
     if all_job_desc.shape[0] > 0:
         all_job_desc.to_sql('jobs_descriptions', sql_engine, if_exists='append', index=False)
         print(f"Added {all_job_desc.shape[0]} job descriptions to the database")
+        logging.info(f"Added {all_job_desc.shape[0]} job descriptions to the database")
     
     return all_job_desc
 

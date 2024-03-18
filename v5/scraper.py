@@ -3,7 +3,12 @@ import pandas as pd
 import os
 import sqlalchemy
 from data_preparation import process_data
+import logging
 
+# set up a log file
+logging.basicConfig(filename='scraper.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+
+logging.info("Starting the scraper....")
 
 # Define the jobs to scrape
 jobs_to_scrape = [
@@ -46,8 +51,10 @@ def get_jobs_all(jobs_to_scrape, locations):
     # Find the total jobs avaialble for each job title
     for job in jobs_to_scrape:
         for location in locations:
+            logging.info(f"Getting the data for {job} in {location}")
             print(f"Getting the data for {job} in {location}")
             jobs_df = search_keyword(job, location)
+            logging.info(f"Got {jobs_df.shape[0]} jobs for {job} in {location}")
             print(f"Got {jobs_df.shape[0]} jobs for {job} in {location}")
             print("Moving to the next location....")
             all_jobs_df = pd.concat([all_jobs_df, jobs_df], ignore_index=True)
@@ -83,15 +90,21 @@ if __name__=="__main__":
     if all_trends_df.shape[0] > 0:
         write_trends_to_db(all_trends_df, "jobs_trends", sql_engine)
         print("Trends data written to the database")
+        logging.info("Trends data written to the database")
     else:
+        logging.info("No trends data to write to the database")
         print("No trends data to write to the database")
     
     all_jobs_df = get_jobs_all(jobs_to_scrape, locations)
     if all_jobs_df.shape[0] > 0:
         write_jobs_to_db(all_jobs_df, "jobs", sql_engine)
+        logging.info("Jobs data written to the database")
         print("Jobs data written to the database")
     else:
+        logging.info("No jobs data to write to the database")
         print("No jobs data to write to the database")
     print("Processing the data....")
+    logging.info("Processing the data....")
     process_data(sql_engine)
+    logging.info("Data processing complete")
     print("Data processing complete")
