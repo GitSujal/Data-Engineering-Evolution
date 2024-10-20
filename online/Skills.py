@@ -4,18 +4,18 @@ import plotly.graph_objects as go
 import os
 import sqlalchemy
 import yaml
+import duckdb
 
 
-config = yaml.safe_load(open('config.yml'))
-# create a new db engine
-server = config['db_credentials']['server']
-database = config['db_credentials']['database']
-user = config['db_credentials']['user']
-password = os.getenv('DP101_PASSWORD')
+# config = yaml.safe_load(open('config.yml'))
+# # create a new db engine
+# server = config['db_credentials']['server']
+# database = config['db_credentials']['database']
+# user = config['db_credentials']['user']
+# password = os.getenv('DP101_PASSWORD')
 
-sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server",
-                                  connect_args={'connect_timeout': 30})
-
+# sql_engine = sqlalchemy.create_engine(f"mssql+pyodbc://{user}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server",
+#                                   connect_args={'connect_timeout': 30})
 
 st.set_page_config(page_title="Top Skills For Data Professionals", page_icon="🔨", layout="wide")
 st.title("Top Skills For Data Professionals")
@@ -26,7 +26,9 @@ def load_data():
     load the data from the database
     :return: dataframe
     """
-    return pd.read_sql('SELECT * FROM jobs_processed', sql_engine)
+    # return pd.read_sql('SELECT * FROM jobs_processed', sql_engine)
+    con = duckdb.connect('../v5/jobs.db', read_only=True)
+    return con.execute('SELECT * FROM jobs_processed').fetchdf()
 
 df = load_data()
 

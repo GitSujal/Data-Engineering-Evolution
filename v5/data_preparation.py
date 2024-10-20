@@ -3,7 +3,8 @@ import json
 import pandas as pd
 import os
 import re
-import sqlalchemy
+import duckdb
+from scraper import write_df_to_duckdb
 
 
 def prepare_data(raw_df: pd.DataFrame, keyword_dict_file: list) -> 0:
@@ -230,7 +231,6 @@ def salary_processor(salary_text: str, debug: bool = False):
 
     return pd.Series(salary_dict.values(), index=salary_dict.keys())
 
-
 def job_work_type_processor(jobWorkType_text: str):
     """ Parse job work type from text like Full Time, Contract/Temp, Part Time
     return a list of job work types
@@ -246,15 +246,15 @@ def job_work_type_processor(jobWorkType_text: str):
             jobWorkType = jobWorkType_text.lower()
     return jobWorkType
 
-def process_data(sql_engine: sqlalchemy.engine.base.Engine):
+def process_data(conn):
     # get the current working directory
     cwd = os.getcwd()
     # get the raw data file
     getting_data_sql = f"""select j.*, jd.jobDescription
-                        from dbo.jobs j
-                        inner join dbo.jobs_descriptions jd on jd.jobId = j.jobId
-                        where j.jobId not in (select jobId from dbo.jobs_processed)"""
-    raw_data = pd.read_sql(getting_data_sql, sql_engine)
+                        from jobs j
+                        inner join jobs_descriptions jd on jd.jobId = j.jobId"""
+                        # where jobId not in (select jobId from dbo.jobs_processed)"""
+    raw_data = conn.execute(getting_data_sql).fetchdf()
     if len(raw_data) > 0:
         print(f'Processing {len(raw_data)} new jobs from the database')
         # get the keyword dictionary files
@@ -263,7 +263,9 @@ def process_data(sql_engine: sqlalchemy.engine.base.Engine):
         # prepare the data
         processed_data = prepare_data(raw_data, keyword_dict_file)
         # # save the processed data to the database
-        processed_data.to_sql('jobs_processed', sql_engine, if_exists='append', index=False)
+        table_name = 'jobs_processed'
+        pk_columns = ['jobId']
+        write_df_to_duckdb(processed_data, table_name, conn, pk_columns)
     else:
         print('No new data to process')
 

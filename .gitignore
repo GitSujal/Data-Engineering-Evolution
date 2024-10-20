@@ -13,3 +13,5 @@ data/
 **/data/*
 config.yml
 scraper.log
+*.db
+*.db.wal

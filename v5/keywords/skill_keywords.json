@@ -48,5 +48,7 @@
     "databricks": "Databricks",
     "glue": "AWS",
     "lambda": "AWS",
-    "synapse": "Azure"
+    "synapse": "Azure",
+    "dbt": "DBT",
+    "airbyte": "Airbyte"
 }

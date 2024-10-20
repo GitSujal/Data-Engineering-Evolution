@@ -1,0 +1,48 @@
+{
+    "2024-10-20": [
+        {
+            "data-analyst": {
+                "numJobsScraped": 0,
+                "numPagesScraped": 0,
+                "isComplete": false
+            }
+        },
+        {
+            "data-engineer": {
+                "numJobsScraped": 0,
+                "numPagesScraped": 0,
+                "isComplete": false
+            }
+        },
+        {
+            "data-scientist": {
+                "numJobsScraped": 0,
+                "numPagesScraped": 0,
+                "isComplete": false
+            }
+        }
+    ],
+    "2024-10-21": [
+        {
+            "data-analyst": {
+                "numJobsScraped": 0,
+                "numPagesScraped": 0,
+                "isComplete": false
+            }
+        },
+        {
+            "data-engineer": {
+                "numJobsScraped": 0,
+                "numPagesScraped": 0,
+                "isComplete": false
+            }
+        },
+        {
+            "data-scientist": {
+                "numJobsScraped": 0,
+                "numPagesScraped": 0,
+                "isComplete": false
+            }
+        }
+    ]
+}
